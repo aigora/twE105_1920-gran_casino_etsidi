@@ -6,8 +6,8 @@ Se realizará un programa que imite a un casino, que incluya un registro y difer
 
 Ignacio Dopazo López, @idopazo
 Samuel Sanchez Cruz, @Ssanchez2002
-Maria Sanz Piña,
-Alvaro Allende Cueva
+Maria Sanz Piña, @msanzp
+Alvaro Allende Cueva @alvallcue
 
 ## Objetivos del trabajo
 

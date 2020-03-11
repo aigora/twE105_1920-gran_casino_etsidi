@@ -4,10 +4,10 @@ Se realizará un programa que imite a un casino, que incluya un registro y difer
 
 ## Integrantes del equipo
 
-Ignacio Dopazo López, @idopazo
-Samuel Sanchez Cruz, @Ssanchez2002
-Maria Sanz Piña, @msanzp
-Alvaro Allende Cueva @alvallcue
+Ignacio Dopazo López- @idopazo\n
+Samuel Sanchez Cruz- @Ssanchez2002
+Maria Sanz Piña- @msanzp
+Alvaro Allende Cueva -@alvallcue
 
 ## Objetivos del trabajo
 

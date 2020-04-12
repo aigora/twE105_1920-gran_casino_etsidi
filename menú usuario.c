@@ -1,10 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+
+void espacios(int n);
+
+	
 int main ()
 {
   int opcion;
   char r;
-  	system("color 70");
+  	
  	printf("Buenos dias!! Bienvenido al Gran Casino ETSIDI\n");
 
   //En un futuro aquí se pedirá al usuario que introduzca sus datos y saldo
@@ -31,7 +35,7 @@ int main ()
 		switch(opcion) //Aquí vamos a comenzar el switch case, pidiendo al usuario que escoja entre 4 opciones, cada una asignada con un número
 		  {
 		  	case 1:
-		  		system("cls");
+		  		espacios(10);
 				printf("Has elegido: ");
 		   		printf(" La Ruleta! \n");
 		       	printf("Pulse 'c' para continuar \n Pulse 'r' para cambiar de juego\n"); // más adelante, si se pulsa c se ejecutará el juego
@@ -39,21 +43,21 @@ int main ()
 		   		break;
 		      
 			case 2:
-				system("cls");
+				espacios(10);
 				printf("Has elegido: ");
 		   		printf(" Blackjack\n");
 		    	printf("Pulse 'c' para continuar \n Pulse 'r' para cambiar de juego\n");
 		    	scanf("%s",&r);
 		     	 break;
 		   	case 3:
-		    	system("cls");
+		    	espacios(10);
 		    	printf("Has elegido: ");
 		    	printf(" la Maquina de slots\n");
 		    	printf("Pulse 'c' para continuar \n Pulse 'r' para cambiar de juego\n");
 		    	scanf("%s",&r);
 		      	break;
 		   	 case 4:
-		    	system("cls");
+		   		espacios(10);
 		    	printf("Has elegido: ");
 		    	printf(" el Bingo\n");
 		    	printf("Pulse 'c' para continuar \n Pulse 'r' para cambiar de juego\n");
@@ -65,6 +69,13 @@ int main ()
 	}
 		while(r=='r');
 return 0;}
+	
+	void espacios(int n)
+	{	int i;
+		for(i=0;i<n;i++)
+		{	printf("\n");
+		}
+	}
 
 
 

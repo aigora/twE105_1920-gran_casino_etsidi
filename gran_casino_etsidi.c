@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void espacios(int n);
+int aleatorio(int minimo,int maximo);
 
-	
+
 int main ()
 {
   int opcion;
@@ -75,5 +77,13 @@ return 0;}
 		for(i=0;i<n;i++)
 		{	printf("\n");
 		}
+	}
+	
+	int aleatorio(int minimo,int maximo)
+	{     int numero;
+		srand(time(NULL));
+
+		numero=rand()%((maximo-minimo)+1)+minimo;
+		return numero;
 	}
 

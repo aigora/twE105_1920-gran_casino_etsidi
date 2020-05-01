@@ -85,7 +85,7 @@ int main ()
 			scanf(" %[^\n]", persona[i].apellido);
 			printf("Escribe tu saldo:\n");
 			scanf(" %i", &persona[i].saldo);
-			printf("%i",&persona[i].saldo);
+			
 			printf("Escribe tu contraseña:\n");
 			scanf(" %[^\n]", persona[i].contrasena);
 			printf("Vuelve a escribir tu contraseña:\n");
@@ -100,7 +100,7 @@ int main ()
 				}
 				if(strcmp(pass, persona[i].contrasena)==0)
 				{
-					usu=fopen("jugadores.txt","a");	
+					usu=fopen("Ficheros/jugadores.txt","a");	
 					if (usu == NULL)
 						{// Si el resultado es NULL mensaje de error
 						printf("Error al abrir el fichero.\n");

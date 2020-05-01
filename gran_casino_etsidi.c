@@ -15,7 +15,7 @@ typedef struct{
 
 int main ()
 {	srand(time(NULL));
-  int opcion,num,tam,i,aux,salir=0,mod;
+  int opcion,num,tam,i,aux,salir=0,cont=0;
   char r,name[30],pass[30];
   float auf;
   	usuario persona[30];
@@ -47,12 +47,20 @@ int main ()
 					if(strcmp(name, persona[i].nombre)==0)
 							{salir=1;
 								printf("Escribe tu contrasena:");
-								printf("%s",persona[i].contrasena);
 								scanf("%s",pass);
-								if(strcmp(pass,persona[i].contrasena)==0)
-									{	printf("Has iniciado sesión correctamente,tu saldo actual es:%i \n ",persona[i].saldo);
+								while(cont<3&&strcmp(pass,persona[i].contrasena)!=0)
+									{	printf("Contrasena incorrecta, inténtelo de nuevo\n Te quedan %i intentos",3-cont);
+										scanf("%s",pass);
+										cont++;
 										
 									}
+									if(cont==3)
+										{	printf("error en el incicio de sesion");
+										}
+									if(strcmp(pass,persona[i].contrasena)==0)
+									{		printf("Has iniciado sesión correctamente,tu saldo actual es:%i \n ",persona[i].saldo);
+									}
+									
 							}
 							
 								

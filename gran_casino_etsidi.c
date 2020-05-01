@@ -23,7 +23,7 @@ int main ()
   		
  	printf("Bienvenido al Gran Casino ETSIDI\n");
 	printf("Comencemos con indicar el numero de participantes y sus datos:\n");
-	printf("-Numero de participantes:");
+	printf("- Numero de participantes:");
 	scanf(" %i",&tam);
 	//ignorar: persona = malloc(sizeof(usuario) * tam);
 				
@@ -34,40 +34,37 @@ int main ()
 		if(opcion==1)
 			{	printf("Escribe tu nombre: ");
 				scanf(" %s",name);
-				printf("vamos a buscarte:");
-				usu=fopen("jugadores.txt","r");
+				printf("vamos a buscarte...\n");
+				usu=fopen("Ficheros/jugadores.txt","r");
   					if (usu == NULL)
 					{// Si el resultado es NULL mensaje de error
 					printf("Error al abrir el fichero.\n");
 					return -1;
 						}
 				fseek(usu, 0, SEEK_SET);
-				while(feof(usu)==0)
+					do
 				{
-						fscanf(usu,"%s\t%s\t%s\t%f \n",persona[i].nombre,persona[i].apellido,persona[i].contrasena,&persona[i].saldo) ;
-									
 					if(strcmp(name, persona[i].nombre)==0)
 							{salir=1;
-								printf("Escribe tu contraseña:");
+								printf("Escribe tu contrasena:");
+								printf("%s",persona[i].contrasena);
 								scanf("%s",pass);
-								if(pass==persona[i].contrasena);
-									{	printf("Has iniciado sesión correctamente \n ¿Quieres modificar tu saldo actual ( %f) [Si:1//No:0]?",persona[i].saldo);
-										scanf("%i",&mod);
-										if(mod==1)
-											{		printf("Introduce tu nuevo saldo:");
-											scanf(" %f",&auf);
-											persona[i].saldo=auf;
-												
-											}
-											
+								if(strcmp(pass,persona[i].contrasena)==0)
+									{	printf("Has iniciado sesión correctamente,tu saldo actual es:%i \n ",persona[i].saldo);
 										
 									}
 							}
-							else
-								{	printf("no se ha enocntrado información tuya en el archivo\n");
-								printf("%s",persona[i].nombre);
-								}
+							
+								
 						}
+						while(salir==0&&fscanf(usu," %i\t%[^\t]\t%[^\t]\t%[^\t]\n",&persona[i].saldo,persona[i].nombre,persona[i].apellido,persona[i].contrasena)!=EOF);
+					if(salir==0)
+					{		printf("no se ha enocntrado información tuya en el archivo\n");
+									
+								
+					}
+						
+					
 						fclose(usu);
 				}
 					
@@ -102,7 +99,7 @@ int main ()
 						return -1;
 						}
 				fseek(usu, 0, SEEK_END);
-				fprintf(usu,"\n%s\t%s\t%s\t%i",persona[i].nombre,persona[i].apellido,persona[i].contrasena,&persona[i].saldo);
+				fprintf(usu,"\n%i\t%s\t%s\t%s",persona[i].saldo,persona[i].nombre,persona[i].apellido,persona[i].contrasena);
 				fclose(usu);
 				}
 			}

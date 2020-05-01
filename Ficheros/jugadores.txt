@@ -1,3 +1,5 @@
-Juan	Fernandez Simon	890458	250.00
-manuel	Garcia Lopez	5490000	861.25
-irene	martinez de la fuente	856790	854.5
+ 125	Juian	Gonzalez	15201256	
+ 67	pedro	martinez castro	678969	
+ 250	Juan	Fernandez Simon	890458	
+ 861	manuel	Garcia Lopez	5490000	
+ 854.5	manuela	martinez de la fuente	856790	

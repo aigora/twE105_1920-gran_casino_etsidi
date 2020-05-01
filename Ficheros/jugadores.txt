@@ -1,0 +1,3 @@
+Juan	Fernandez Simon	890458	250.00
+manuel	Garcia Lopez	5490000	861.25
+irene	martinez de la fuente	856790	854.5

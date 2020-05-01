@@ -9,7 +9,7 @@ typedef struct{
 		char nombre[30];
 		char apellido[30];
 		char contrasena[15];
-		float saldo; //int, long int
+		int saldo; //int, long int
 		
 }usuario;
 
@@ -22,13 +22,10 @@ int main ()
   	FILE *usu;
   		
  	printf("Bienvenido al Gran Casino ETSIDI\n");
-
-  //En un futuro aquí se pedirá al usuario que introduzca sus datos y saldo
 	printf("Comencemos con indicar el numero de participantes y sus datos:\n");
 	printf("-Numero de participantes:");
 	scanf(" %i",&tam);
 	//ignorar: persona = malloc(sizeof(usuario) * tam);
-
 				
 	for(i=0;i<tam;i++)
 	{	salir=0;
@@ -71,14 +68,45 @@ int main ()
 								printf("%s",persona[i].nombre);
 								}
 						}
+						fclose(usu);
 				}
-				
-								
-							
+					
+    	if(opcion==0)
+    		{
+    		printf("Vamos a proceder a registrarte.");
+			printf("Escribe tu nombre:\n");
+			scanf("%s", persona[i].nombre);
+			printf("Escribe tu apellido:\n");
+			scanf(" %[^\n]", persona[i].apellido);
+			printf("Escribe tu saldo:\n");
+			scanf(" %i", &persona[i].saldo);
+			printf("%i",&persona[i].saldo);
+			printf("Escribe tu contraseña:\n");
+			scanf(" %[^\n]", persona[i].contrasena);
+			printf("Vuelve a escribir tu contraseña:\n");
+			scanf(" %[^\n]", pass);
+				while(strcmp(pass, persona[i].contrasena)!=0)
+				{
+				printf("Las contraseñas no coinciden, repite el proceso");
+				printf("Escribe tu contraseña:\n");
+				scanf("%s", persona[i].contrasena);
+				printf("Vuelve a escribir tu contraseña:\n");
+				scanf("%s", pass);
 				}
+				if(strcmp(pass, persona[i].contrasena)==0)
+				{
+					usu=fopen("jugadores.txt","a");	
+					if (usu == NULL)
+						{// Si el resultado es NULL mensaje de error
+						printf("Error al abrir el fichero.\n");
+						return -1;
+						}
+				fseek(usu, 0, SEEK_END);
+				fprintf(usu,"\n%s\t%s\t%s\t%i",persona[i].nombre,persona[i].apellido,persona[i].contrasena,&persona[i].saldo);
 				fclose(usu);
-    
-  
+				}
+			}
+	}
 	do
 	{
   		printf("Escoge entre una de los siguientes juegos:\n");
@@ -138,7 +166,8 @@ int main ()
 		while(r=='r');
 	
 	
-return 0;}
+return 0;
+}
 	
 	void espacios(int n)
 	{	int i;

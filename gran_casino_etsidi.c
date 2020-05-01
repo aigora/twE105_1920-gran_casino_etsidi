@@ -14,7 +14,7 @@ typedef struct{
 }usuario;
 
 int main ()
-{
+{	srand(time(NULL));
   int opcion,num,tam,i,aux,salir=0,mod;
   char r,name[30],pass[30];
   float auf;
@@ -178,8 +178,6 @@ return 0;
 	
 	int aleatorio(int minimo,int maximo)
 	{     int numero;
-		srand(time(NULL));
-
 		numero=rand()%((maximo-minimo)+1)+minimo;
 		return numero;
 	}

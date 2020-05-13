@@ -63,10 +63,11 @@ void vueltas(int rodillos[3][3], int filas, int columnas)
 
 int ganado(int rodillos[3][3], int filas, int columnas)
 {
-	int i, j, k;
-	float ganancia=0;
+	int i, j, k, h;
+	float ganancia=0, ganancia1=0;
 	int gana[9];
 	
+	//ganancias de los números de la matriz
 	for(i=0;i<3;i++)
 		{
 			for(j=0;j<3;j++)
@@ -87,6 +88,7 @@ int ganado(int rodillos[3][3], int filas, int columnas)
 			}
 		}
 	
+	// ganancias de la diagonal
 	if (rodillos[0][0]== rodillos[1][1]== rodillos[2][2])
 		{
 			ganancia= ganancia+ rodillos[0][0]*0.2;
@@ -104,6 +106,31 @@ int ganado(int rodillos[3][3], int filas, int columnas)
 			ganancia= ganancia+ rodillos[0][0]*0.1;
 		}
 	
+	//ganancias cuando se repiten dos números en una fila
+	for(i=0;i<3;i++)
+	{
+		for(j=0;j<3;j++)
+		{
+			for(k=0;k<3;k++)
+			{
+				if(rodillos[i][j]== rodillos[i][k] && k!=j)
+				{
+					ganancia1= rodillos[i][j]*0.5;
+				}
+			}
+		}
+	}
+	
+	//ganancias si una línea tiene todos los números iguales
+	do
+	{
+		if (rodillos[i][j]== rodillos[i][j+1]== rodillos[i][j+2])
+		{
+		ganancia= ganancia+ rodillos[i][j];	
+		}
+	}
+	while(j=0);
+	
+	ganancia= ganancia+ ganancia1;
 	printf("Ha ganado %.2f", ganancia);
 }
-

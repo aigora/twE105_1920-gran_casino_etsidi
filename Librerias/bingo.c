@@ -325,7 +325,45 @@ for(i=0;i<10;i++)
 					
 					}
 				
-		
-			
 }
+
+void saldobingo(int *saldo,int mas)
+	{	*saldo+=mas;
+	}
+	
+	int bingolinea(int matriz[][5],int n, int c,int numero)
+	{	int i,j,k,z;
+		int check[3];
+	
+		
+			for(i=0;i<3;i++)
+						{	
+						for(j=0;j<5;j++)
+									{	if(matriz[i][j]==numero)
+											{	matriz[i][j]=-1;
+											}
+									}
+						}
+				for(i=0;i<3;i++)
+						{	check[i]=0;
+						for(j=0;j<5;j++)
+									{	if(matriz[i][j]==-1)
+											{	check[i]++;
+											}
+										
+									}
+						}
+			for(i=0;i<3;i++)
+				{	if(check[i]==5)
+						{	return 2; //2==linea
+						}
+				}
+			if((check[0]==5)&&(check[1]==5)&&(check[0]==5))
+					{	return 1; //1==bingo
+				}
+			else return 0;//no hay ni linea ni bingo
+					
+					
+			
+	}
 

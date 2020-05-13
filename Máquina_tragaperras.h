@@ -5,26 +5,101 @@ int aleatorio(int minimo,int maximo)
 		return numero;
 	}
 	
-float ganancia(int rodillos[3][3])
+void vueltas(int rodillos[3][3], int filas, int columnas)
+{
+	int i,j,k;
+	int repeat;
+	
+	//Matriz de números aleatorios comprendidos entre el 0 y 7.
+	for(i=0;i<3; i++)
 	{
-		float ganancia= 0;
-		int i, j;
-		for(i=0;i<3;i++)
+		for(j=0;j<3;j++)
+		{
+		rodillos[i][j]=aleatorio(0,7);
+		}
+	}
+	//Comprobar que dentro de la misma columna no hay dos núemros iguales 
+	//En cada rodillo (columna de la matriz) aparece cada símbolo una sola vez
+	for(i=0;i<3;i++)
+	{ 
+		repeat=rodillos[0][i];   
+		for(k=1;k<3;k++)
+	      {  
+		  	while(rodillos[k][i]==repeat) 
+	            {  
+				rodillos[k][i]=aleatorio(0,7);
+				}
+		  }
+		repeat=rodillos[1][i];  
+		for(k=2;k<3;k++)
+	      {  
+		  	while(rodillos[k][i]==repeat)
+	            {  
+				rodillos[k][i]=aleatorio(0,7);
+				}
+		  }   
+	}
+	
+	for(k=0;k<3;k++)
+	{
+		while(rodillos[0][k]==rodillos[2][k])
+		{
+			rodillos[2][k]=aleatorio(0,7);
+		}
+	}
+
+	for(i=0;i<3; i++)
+	{
+		for(j=0;j<3;j++)
+		{
+		printf("%d\t", rodillos[i][j]);
+		}
+		printf ("\n");
+	}
+}
+
+int ganado(int rodillos[3][3], int filas, int columnas)
+{
+	int i, j, k;
+	float ganancia=0;
+	int gana[9];
+	
+	for(i=0;i<3;i++)
 		{
 			for(j=0;j<3;j++)
 			{
-				if ((rodillos[i][j]== rodillos[i][j+1])||(rodillos[i][j]== rodillos[i][j+2])||(rodillos[i][j+2]== rodillos[i][j+1]))
+			gana[k]= rodillos[i][j];
+			if(gana[k]==0 || gana[k]==1 || gana[k]==2 || gana[k]==3)
 				{
-				ganancia= ganancia*2;
+				ganancia= ganancia+0.02;
 				}
-				else if (rodillos[i][j]== rodillos[i][j+1]== rodillos[i][j+2])
+			else if(gana[k]==4 || gana[k]==5 || gana[k]==6)
+				{
+				ganancia= ganancia+0.05;
+				}
+			else if (gana[k]==7)
+				{
+				ganancia= ganancia+0.1;
+				}
 			}
-		
 		}
-		return ganancia;
-	}
 	
-float vueltas()
-	{
+	if (rodillos[0][0]== rodillos[1][1]== rodillos[2][2])
+		{
+			ganancia= ganancia+ rodillos[0][0]*0.2;
+		}
+	else if (rodillos[0][0]== rodillos[1][1])
+		{
+			ganancia= ganancia+ rodillos[0][0]*0.1;
+		}	
+	else if (rodillos[2][2]== rodillos[1][1])
+		{
+			ganancia= ganancia+ rodillos[2][2]*0.1;
+		}	
+	else if (rodillos[0][0]== rodillos[2][2])
+		{
+			ganancia= ganancia+ rodillos[0][0]*0.1;
+		}
 	
-	}
+	printf("Ha ganado %.2f", ganancia);
+}

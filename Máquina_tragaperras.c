@@ -1,2 +1,4 @@
 int aleatorio(int minimo,int maximo);
-float ganancia(int rodillos[3][3]);
+void vueltas(int rodillos[3][3], int filas, int columnas);
+int ganado(int rodillos[3][3], int filas, int columnas);
+

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "blackjack.h"
-typedef struct{
+typedef struct{ 
 		char nombre[30];
 		char apellido[30];
 		char contrasena[15];

@@ -51,12 +51,13 @@ return 0;
 	
 	char *juego(char *baraja,int apuesta, int saldo)
 	{
-		int i=0,n=0;
-		char cartajugador[i];
-		char cartacrupier[i];
+		int i=0,n=0, j=0, k=0;
+		char cartajugador[5];
+		char cartacrupier[5];
 		char opcion;
 		cartacrupier[i]=baraja[n];
 		n++;
+		k++;
 		if(cartacrupier[0]=='0')
 		{
 		printf("Crupier:\t|10|");
@@ -64,17 +65,22 @@ return 0;
 		else
 		printf("Crupier:\t|%c|",cartacrupier[0]);
 		printf("Jugador: ");
-		for(i=0;i<2;i++){
-			cartajugador[i]=baraja[n];
-			if(cartajugador[i]=='0')
+		for(i=0;i<2;i++)
 			{
-				printf("|10|\t");
-			n++;
+			cartajugador[i]=baraja[n];
+				if(cartajugador[i]=='0')
+					{
+					printf("|10|\t");
+					n++;
+					j++;
+					}
+				else
+					{
+					printf("|%c|\t",cartajugador[i]);
+					n++;
+					j++;
+					}
 			}
-			else
-			printf("|%c|\t",cartajugador[i]);
-			n++;
-		}
 		printf("Tienes %i puntos ",cambio(cartajugador));
 		printf("y el Crupier tiene %i puntos|\n",cambio(cartacrupier));
 		printf("Puedes:\nPedir carta:'p'\nDoblar apuesta:'d'\nPlantarte:'f'\n");
@@ -84,19 +90,35 @@ return 0;
 				printf("No es una opcion valida");
 				scanf("%c",&opcion);
 				}
+				
 		do
 		{
 		switch(opcion)
 			{
 			case 'p':
-				i=i+1;
-				cartajugador[i]=baraja[i+2];+
-				printf("Jugador: ");
-				for(i=0;i<n;i++){
-				printf("|%c|\t",cartajugador[i]);
-				}
+				j++;
+				cartajugador[i]=baraja[n];
 				n++;
-				opcion='f';
+				printf("Jugador: ");
+				for(i=0;i<j;i++)
+				{
+				if(cartajugador[i]=='0')
+					{
+					printf("|10|\t");
+					}
+				else
+					{
+					printf("|%c|\t",cartajugador[i]);
+					}
+				}
+				if(cambio(cartajugador)>21)
+				{
+				opcion='e';
+				break;
+				}
+				printf("Tienes %i puntos ",cambio(cartajugador));
+				printf("Quieres pedir otra? (p para pedir o f para terminar la ronda)\n");
+				scanf(" %c",&opcion);
 				break;
 			case 'd':
 				printf("%i,%i\n",saldo,apuesta);
@@ -106,29 +128,68 @@ return 0;
 					scanf(" %c",&opcion);
 					}			
 					apuesta=apuesta*2;
-					printf("%i",apuesta);
+					printf("Esta es tu nueva apuesta: %i\nQue desea hacer a continuacion?",apuesta);
 					scanf(" %c",&opcion);
 				break;
 			case 'f':
-				cartacrupier[i]=baraja[i+3];
-				printf("Crupier: ");
-				for(i=0;i<n;i++){
-				printf("|%c|\t",cartacrupier[i]);
+				if(cambio(cartajugador)>21)
+				{
+				opcion='e';
+				break;
 				}
-				n++;
-				printf("Tienes %i puntos y el Crupier tiene %i puntos|\n",cambio(cartajugador),cambio(cartacrupier));
+				printf("Crupier:");
+				do
+				{
+					i=k;
+					cartacrupier[i]=baraja[n];
+					n++;
+					k++;
+				if(cambio(cartacrupier)>21)
+					{
+						opcion='e';
+						break;
+					}
+				}
+				
+				while(cambio(cartacrupier)<=16);
+				for(i=0;i<k;i++)
+					{
+						if(cartacrupier[i]=='0')
+							{
+								printf("\t|10|");
+							}
+						else
+							printf("\t|%c|",cartacrupier[i]);
+					}
+				
+				printf("\nTienes %i puntos y el Crupier tiene %i puntos|\n",cambio(cartajugador),cambio(cartacrupier));
 			
 				opcion='e';
 				break;		
 			}	
 		}
 		while(opcion!='e');
-		printf("\n %s \n",baraja);
+		if(cambio(cartajugador)>21)
+					{
+					printf("Tienes %i puntos, son mas de 21 has perdido",cambio(cartajugador));
+					}
+		if(cambio(cartacrupier)>21)
+					{
+					printf("El crupier tiene %i puntos, son mas de 21 has ganado",cambio(cartacrupier));	
+					}
+		if(cambio(cartacrupier)>cambio(cartajugador&&cambio(cartacrupier)<=21))
+					{
+					printf("El crupier tiene mas puntos que tu has perdido J=%i;C=%i",cambio(cartajugador),cambio(cartacrupier));
+					}
+		if(cambio(cartacrupier)<cambio(cartajugador)&&cambio(cartajugador)<=21)
+					{
+					printf("Tienes mas puntos que el Crupier, HAS GANADO! J=%i;C=%i",cambio(cartajugador),cambio(cartacrupier));
+					}			
 		return baraja;
 	}
 	int cambio(char cartas[])
 	{
-	int i=0;
+	int i=0,j=0;
 	char n=cartas[0];
 	int total=0,num = 0;
 	while(cartas[i]!='\0')
@@ -138,8 +199,12 @@ return 0;
 		switch(n)	
 		{
 		case 'A':
-			num = 1;
-			total=total+num;
+			if(total+11<=21)
+			{
+			total=total+11;
+			}
+			else
+			total=total+1;
 		break;
 		case 'K':
 		case 'Q':
@@ -163,6 +228,15 @@ return 0;
 		}
 	
 	i++;
+	j=i;
 	}
+	if(total>21)
+		{
+			for(i=0;i<j;i++)
+				{
+					if(cartas[i]=='A')
+					total=total-10; 	
+				}			
+		}
 	return total;
 }

@@ -31,7 +31,7 @@ for(i=0;i<5;i++)
 			
 	}
 int comprobarcarton(int matriz[][5], int n,int c)
-	{	int i,j,cont[10],contadorfilas[3], mal;
+	{	int i,j,k,z,cont[10],contadorfilas[3], mal;
 				for(i=0;i<10;i++)
 				{	cont[i]=0;
 				}
@@ -325,7 +325,7 @@ for(i=0;i<10;i++)
 					
 					}
 				
-		//bucle while cuya condicion sea mirar si todos locntadores sean menor que tres
+		
 			
 }
 

@@ -1,4 +1,5 @@
 #include "blackjack.h"
+
 char *crearbaraja(int n)
 {
 char *palo = "A234567890JQK";
@@ -36,3 +37,4 @@ int n = strlen(baraja);
 	free(baraja);
 	return barajado;	
 }
+

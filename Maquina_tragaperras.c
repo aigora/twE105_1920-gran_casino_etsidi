@@ -1,3 +1,6 @@
+#include<stdio.h>
+#include "Maquina_tragaperras.h"
+
 int aleatorio(int minimo,int maximo)
 	{     
 		int numero;
@@ -103,3 +106,4 @@ int ganado(int rodillos[3][3], int filas, int columnas)
 	
 	printf("Ha ganado %.2f", ganancia);
 }
+

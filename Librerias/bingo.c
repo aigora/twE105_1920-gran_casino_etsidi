@@ -332,7 +332,7 @@ void saldobingo(int *saldo,int mas)
 	}
 	
 	int bingolinea(int matriz[][5],int n, int c,int numero)
-	{	int i,j,k,z;
+	{	int i,j;
 		int check[3];
 	
 		
@@ -340,7 +340,7 @@ void saldobingo(int *saldo,int mas)
 						{	
 						for(j=0;j<5;j++)
 									{	if(matriz[i][j]==numero)
-											{	matriz[i][j]=-1;
+											{	matriz[i][j]=-1;//si el numero que sca la maquina esta en el carton se camia por un -1, es el equivalente a poner una ficha
 											}
 									}
 						}

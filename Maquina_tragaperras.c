@@ -3,7 +3,7 @@
 
 int aleatorio(int minimo,int maximo)
 	{     
-		int numero;
+		int  numero;
 		numero=rand()%((maximo-minimo)+1)+minimo;
 		return numero;
 	}
@@ -61,7 +61,7 @@ void vueltas(int rodillos[3][3], int filas, int columnas)
 	}
 }
 
-int ganado(int rodillos[3][3], int filas, int columnas)
+float ganado(int rodillos[3][3], int filas, int columnas)
 {
 	int i, j, k, h;
 	float ganancia=0, ganancia1=0;
@@ -133,4 +133,5 @@ int ganado(int rodillos[3][3], int filas, int columnas)
 	
 	ganancia= ganancia+ ganancia1;
 	printf("Ha ganado %.2f", ganancia);
+	return ganancia;
 }

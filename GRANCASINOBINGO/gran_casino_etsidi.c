@@ -3,9 +3,6 @@
 #include <string.h>
 #include <time.h>
 #include "bingo.h"
-#include "blackjack.h"
-void espacios(int n);
-int aleatorio(int minimo,int maximo);
 typedef struct{
 		char nombre[30];
 		char apellido[30];
@@ -13,6 +10,9 @@ typedef struct{
 		int saldo; //int, long int
 		  int carton[3][5];
 }usuario;
+void espacios(int n);
+int aleatorio(int minimo,int maximo);
+
 
 int main ()
 {	srand(time(NULL));

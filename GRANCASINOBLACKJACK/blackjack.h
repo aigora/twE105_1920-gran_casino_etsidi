@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 char *crearbaraja(int n);
 char *barajar(char *baraja);
 int juego(char *baraja,int apuesta, int saldo);

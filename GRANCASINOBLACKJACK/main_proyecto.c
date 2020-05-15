@@ -163,7 +163,7 @@ int n=0,resultado;
 	printf("\nSe va a jugar con 2 barajas \nBarajando...\nListo!");
 	printf("\nSu saldo es de %i. La apuesta minima son 5\n",persona[1].saldo);
 	printf("Desea una breve explicacion de las reglas?('y' para si),('n' para no)\n");
-		scanf("%c", &reglas);
+		scanf(" %c", &reglas);
 		if(reglas=='y')
 		{
 	 		printf("El blackjack es un juego de cartas en el que el jugador juega contra el crupier. El objetivo es quedar lo mas cerca de\n21 puntos sin pasarse.");
@@ -172,6 +172,7 @@ int n=0,resultado;
 	 		printf("apuesta, pedir carta hasta que desee (siempre que no supere\nlos 21 puntos) o plantarse. Al plantarse se repartiran cartas al crupier, el cual robara");
 	 		printf("carta siempre que tenga 16\no menos y se plantara con 17 o mas puntos\n");
 		}
+	else
 	printf("Que comience el juego, ");
 	printf("Cuanto desea apostar?\n");
 		scanf("%i",&apuesta);

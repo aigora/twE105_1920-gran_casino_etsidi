@@ -1,4 +1,5 @@
 #include "blackjack.h"
+#include <string.h>
 
 char *crearbaraja(int n)
 {

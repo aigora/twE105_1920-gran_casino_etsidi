@@ -3,11 +3,12 @@
 #include <time.h>
 
 void reglas(int n)
-	{	printf("Reglas del juego \n Primero, cada uno de los %i jugadores debera de decidir siquiere diseñar su propio carton o elegir uno predeterminado.\n Precios :		Predeterminado:5\t Personalizado: 7 \n \n Van a ir saliendo numeros aleatorios 	entre el 1 y el 90 y vas a tener que ir marcando si esta en tu carton.\n Si tienes una linea ganaras 12 monedas y si consigues hacer el bingo(carton completo) ganaras 80 monedas.\n\n",n);
+	{	printf("Reglas del juego \n Primero, cada uno de los %i jugadores debera de decidir siquiere diseñar su propio carton o elegir uno predeterminado.\n Precios :		Predeterminado:5\t Personalizado: 7 \n \n Van a ir saliendo numeros aleatorios 	entre el 1 y el 99 y vas a tener que ir marcando si esta en tu carton.\n Si tienes una linea ganaras 12 monedas y si consigues hacer el bingo(carton completo) ganaras 80 monedas.\n\n",n);
 	
 	}
 	int aleat(int minimo,int maximo)
 	{     int numero;
+	srand(time(NULL));
 		numero=rand()%((maximo-minimo)+1)+minimo;
 		return numero;
 	}
@@ -221,6 +222,7 @@ for(i=0;i<10;i++)
 							{	cont[0]++;
 								if(cont[0]>3)
 									{	matriz[i][j]=matriz[i][j]+10;
+										cont[0]--;
 									}
 									
 							}
@@ -228,6 +230,7 @@ for(i=0;i<10;i++)
 							{	cont[1]++;
 							if(cont[1]>3)
 									{	matriz[i][j]=matriz[i][j]+10;
+									cont[1]--;
 									}
 									
 							}
@@ -235,6 +238,7 @@ for(i=0;i<10;i++)
 							{	cont[2]++;
 								if(cont[2]>3)
 									{	matriz[i][j]=matriz[i][j]+10;
+									cont[2]--;
 									}
 									
 							}
@@ -242,6 +246,7 @@ for(i=0;i<10;i++)
 							{	cont[3]++;
 								if(cont[3]>3)
 									{	matriz[i][j]=matriz[i][j]+10;
+									cont[3]--;
 									}
 									
 							}
@@ -249,6 +254,7 @@ for(i=0;i<10;i++)
 							{	cont[4]++;
 								if(cont[4]>3)
 									{	matriz[i][j]=matriz[i][j]+10;
+									cont[4]--;
 									}
 									
 							}
@@ -256,6 +262,7 @@ for(i=0;i<10;i++)
 							{	cont[5]++;
 								if(cont[5]>3)
 									{	matriz[i][j]=matriz[i][j]+10;
+									cont[5]--;
 									}
 									
 							}
@@ -263,6 +270,7 @@ for(i=0;i<10;i++)
 							{	cont[6]++;
 								if(cont[6]>3)
 									{	matriz[i][j]=matriz[i][j]+10;
+									cont[6]--;
 									}
 									
 							}
@@ -270,6 +278,7 @@ for(i=0;i<10;i++)
 							{	cont[7]++;
 								if(cont[7]>3)
 									{	matriz[i][j]=matriz[i][j]+10;
+									cont[7]--;
 									}
 									
 							}
@@ -277,6 +286,7 @@ for(i=0;i<10;i++)
 							{	cont[8]++;
 								if(cont[8]>3)
 									{	matriz[i][j]=matriz[i][j]+10;
+									cont[8]--;
 									}
 									
 							}
@@ -284,6 +294,7 @@ for(i=0;i<10;i++)
 							{	cont[9]++;
 								if(cont[9]>3)
 									{	matriz[i][j]=matriz[i][j]-10;
+									cont[9]--;
 									}
 									
 							}
@@ -297,7 +308,6 @@ for(i=0;i<10;i++)
 					for(i=0;i<10;i++)
 				{	if(cont[i]>3)
 						{	comprobacion=0;
-						
 						}
 					
 				}
@@ -332,7 +342,7 @@ void saldobingo(int *saldo,int mas)
 	}
 	
 	int bingolinea(int matriz[][5],int n, int c,int numero)
-	{	int i,j;
+	{	int i,j,lineas=0,bingo=0;
 		int check[3];
 	
 		
@@ -340,28 +350,33 @@ void saldobingo(int *saldo,int mas)
 						{	
 						for(j=0;j<5;j++)
 									{	if(matriz[i][j]==numero)
-											{	matriz[i][j]=-1;//si el numero que sca la maquina esta en el carton se camia por un -1, es el equivalente a poner una ficha
+											{	matriz[i][j]=0;//si el numero que sca la maquina esta en el carton se camia por un -1, es el equivalente a poner una ficha
 											}
 									}
 						}
 				for(i=0;i<3;i++)
 						{	check[i]=0;
 						for(j=0;j<5;j++)
-									{	if(matriz[i][j]==-1)
+									{	if(matriz[i][j]==0)
 											{	check[i]++;
 											}
 										
 									}
 						}
+						
+				
+						if((check[0]==5)&&(check[1]==5)&&(check[0]==5))
+					{	return 1;
+						bingo=1 ;//1==bingo
+				}
 			for(i=0;i<3;i++)
 				{	if(check[i]==5)
-						{	return 2; //2==linea
+						{		return 2; //2==linea
+								lineas=1;
 						}
 				}
-			if((check[0]==5)&&(check[1]==5)&&(check[0]==5))
-					{	return 1; //1==bingo
-				}
-			else return 0;//no hay ni linea ni bingo
+			if(lineas==0&&bingo==0) return 0;
+			//no hay ni linea ni bingo
 					
 					
 			

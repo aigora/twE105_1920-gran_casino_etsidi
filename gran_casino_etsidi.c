@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-
+#include "bingo.h"
+#include "blackjack.h"
 void espacios(int n);
 int aleatorio(int minimo,int maximo);
 typedef struct{
@@ -10,12 +11,15 @@ typedef struct{
 		char apellido[30];
 		char contrasena[15];
 		int saldo; //int, long int
-		
+		  int carton[3][5];
 }usuario;
 
 int main ()
 {	srand(time(NULL));
   int opcion,num,tam,i,aux,salir=0,cont=0;
+  int numbingo[99],bolita,tiradab;
+  int j,k,question,ganador=-1,nlinea[30],linea;
+  char continuar;
   char r,name[30],pass[30];
   float auf;
   	usuario persona[30];
@@ -161,8 +165,188 @@ int main ()
 		    	printf("Pulse 'c' para continuar \n Pulse 'r' para cambiar de juego\n");
 		   		scanf("%s",&r);
 		   			if(r=='c')
-		   				{	
-						   }
+		   				
+				{		reglas(tam);
+		   				for(i=0;i<tam;i++)
+		   				{
+						   
+		   				printf(" %s quieres diseñar el carton, generarlo aleatoriamente, o sacar uno del fichero? (1||0||2)",persona[i].nombre);
+		   					scanf("%i",&aux);
+		   						switch(aux)
+		   							{	case 1:
+		   								printf("Se te van a descortar 7 monedas de tu saldo");
+		   								while((persona[i].saldo-7)<0)
+		   									{	printf("No tienes dinero suficiente, mete mas dinero en tu saldo si queires continuar:");
+		   										scanf("%i",&persona[i].saldo);
+											   }						
+										persona[i].saldo-=7	;			   
+		   								disenocarton(persona[i].carton,3,5);
+		   								
+		   								break;
+		   								case 0:
+		   									printf("Se te van a descortar 7 monedas de tu saldo\n");
+		   										while((persona[i].saldo-7)<0)
+		   											{	printf("No tienes dinero suficiente, mete mas dinero en tu saldo si queires continuar:\n");
+		   												scanf("%i",&persona[i].saldo);
+														   }						
+												persona[i].saldo-=7	;			   
+		   										
+		   										for(cont=-1;cont<i;cont++)//para que no haya dos cartones iguales
+		   											{	cartonaleatorio(persona[i].carton,3,5);
+													   }
+		   									
+		   											display(persona[i].carton,3,5);
+		   										printf("notas algun error, tu cartón es el mismo que el de otro jugador?(Si:1;No=0)");
+		   											
+  												scanf("%i",&question);
+  												while(question==1)
+  											{	printf("vamos a solucionarlo\n");
+  												cartonaleatorio(persona[0].carton,3,5);
+  												display(persona[0].carton,3,5);
+  													printf("notas algun error, tu cartón es el mismo que el de otro jugador?(Si:1;No=0)\n");
+  													scanf("%i",&question);
+  												}
+		   										break;
+		   								case 2:
+		   										printf("Se te van a descortar 5 monedas de tu saldo\n");
+		   								while((persona[i].saldo-5)<0)
+		   									{	printf("No tienes dinero suficiente, mete mas dinero en tu saldo si queires continuar:\n");
+		   										scanf("%i",&persona[i].saldo);
+											   }						
+										persona[i].saldo-=5	;			   
+		   								
+		   										usu=fopen("Ficheros/cartones.txt","r");	
+													if (usu == NULL)
+														{// Si el resultado es NULL mensaje de error
+																printf("Error al abrir el fichero.\n");
+																return -1;
+															}
+												
+												for(k=0;k<3;k++)
+												
+												{	
+												for(j=0;j<5;j++)
+														{		if(j==4&&k==2)
+															{	fscanf(usu,"%i\n",&persona[i].carton[k][j]);
+															
+															}
+														fscanf(usu,"%i,",&persona[i].carton[k][j]);
+													
+														}
+												}
+												ordenarcarton(persona[i].carton,3,5);
+												display(persona[i].carton,3,5);
+												fclose(usu);
+												break;
+									   }
+								
+								display(persona[i].carton,3,5);
+								printf("Quieres guardarlo en un Fichero para próximas jugadas? (si:1||no:0)\n");
+		   									scanf("%i",&question);
+		   									if(question==0)
+		   										{	printf("perfecto, vamos a continuar\n");
+												   }
+		   									if(question==1)
+		   										{	
+								usu=fopen("Ficheros/cartones.txt","a");	
+													if (usu == NULL)
+														{// Si el resultado es NULL mensaje de error
+																printf("Error al abrir el fichero.\n");
+																return -1;
+															}
+												fseek(usu, 0, SEEK_END);
+													fprintf(usu,"\n");
+												
+												for(k=0;k<3;k++)
+												{	for(j=0;j<5;j++)
+												
+														{	if(j==4&&i==2)
+															{	fprintf(usu,"%i",persona[i].carton[k][j]);
+															}
+														fprintf(usu,"%i,",persona[i].carton[k][j]);
+												
+											
+														}
+												}
+												
+												fclose(usu);
+												   }
+						
+									
+										}
+										
+										for(k=0;k<99;k++)
+										{	numbingo[k]=k+1;
+										}
+										bolita=aleatorio(1,99);
+										while(ganador==-1)
+										{
+												
+													printf("\n numero:%i   \n ",bolita);
+														for(i=0;ganador==-1&&i<tam;i++)
+													{
+													
+													switch(bingolinea(persona[i].carton,3,5,bolita))
+														{	
+														
+															case 1:
+																printf("Bingo para %s!!\n",persona[i].nombre);
+																saldobingo(&persona[i].saldo,80);
+															
+																ganador=i;
+																break;
+														case 2:
+															printf("Linea para %s!!\n",persona[i].nombre);
+																
+																nlinea[i]++;
+																if(nlinea[i]>3)
+																	{	nlinea[i]=3;
+																	}
+															break;
+															case 0:
+																														
+															break;
+														}
+														printf("%s:\n",persona[i].nombre);
+																display(persona[i].carton,3,5);
+													
+													}
+													tiradab=0;
+													while(tiradab==0)
+													{
+													
+														if(numbingo[bolita-1]==0)
+																{	bolita=aleatorio(1,99);
+																	tiradab=0;
+																}
+																else
+																{	numbingo[bolita-1]=0;
+																tiradab=1;
+																}
+														
+													}
+														printf("pulse cualquier tecla para sacar otra bola:\n");
+																scanf("%c",&continuar);
+																
+															printf("siguiente numero\n");
+												
+													}
+										printf("Felicidades %s, has Ganado el bingo!",persona[ganador].nombre);
+										saldobingo(&persona[i].saldo,80);
+										for(i=0;i<tam;i++)
+											{	if(nlinea[i]!=0)
+													{linea=12*nlinea[i];
+													saldobingo(&persona[i].saldo,linea);
+													printf("%s tu saldo es: %i",persona[i].nombre,persona[i].saldo);
+														}	
+														else 
+														{	printf("%s tu saldo es: %i",persona[i].nombre,persona[i].saldo);
+														}
+											}
+								
+										
+						   }	
+						   
 		     	break;
 		      
 			}

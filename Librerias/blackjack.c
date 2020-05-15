@@ -72,7 +72,7 @@ int juego(char *baraja,int apuesta, int saldo)
 		if(cambio(cartajugador)==21)
 		{
 			printf("BLACKJACK, HAS GANADO");
-			saldo=apuesta*3/2;
+			saldo=apuesta*3;
 			return saldo;
 		}
 		else
@@ -173,7 +173,7 @@ int resultado(int jugador, int crupier, int saldo, int apuesta)
 		if(jugador>21)
 					{
 					printf("Tienes %i puntos, son mas de 21 has perdido",jugador);
-					saldo-=apuesta;
+					saldo=saldo-apuesta;
 					return saldo;
 					}
 		if(crupier>21)
@@ -185,7 +185,7 @@ int resultado(int jugador, int crupier, int saldo, int apuesta)
 		if(crupier>jugador&&crupier<=21)
 					{
 					printf("El crupier tiene mas puntos que tu has perdido J=%i;C=%i",jugador,crupier);
-					saldo-=apuesta;
+					saldo=saldo-apuesta;
 					return saldo;
 					}
 		if(crupier<jugador&&jugador<=21)

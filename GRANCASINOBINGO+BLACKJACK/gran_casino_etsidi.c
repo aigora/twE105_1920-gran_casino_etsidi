@@ -16,7 +16,7 @@ int aleatorio(int minimo,int maximo);
 
 int main ()
 {	srand(time(NULL));
-  int opcion,num,tam,i,aux,salir=0,cont=0;
+  int opcion,num,tam,i,aux,salir=0,cont=0,n;
   int numbingo[99],bolita,tiradab;
   int j,k,question,ganador=-1,nlinea[30],linea;
   char continuar;
@@ -62,7 +62,11 @@ int main ()
 										{	printf("error en el incicio de sesion");
 										}
 									if(strcmp(pass,persona[i].contrasena)==0)
-									{		printf("Has iniciado sesión correctamente,tu saldo actual es:%i \n ",persona[i].saldo);
+									{printf("Has iniciado sesión correctamente,tu saldo actual es:%i \n ",persona[i].saldo);
+											while(n=!' '){
+											persona[1].nombre[n]=persona[i].nombre[n];	
+											}
+											persona[1].saldo=persona[i].saldo;
 									}
 									
 							}
@@ -169,7 +173,7 @@ int main ()
 					 		printf("Las figuras valen 10 puntos y el resto de cartas su valor numerico. El As actua como un comodin y\nvale 11 o 1 puntos dependiendo de lo que ");
 					 		printf("favorezca al jugador. Cada ronda comenzara repartiendo dos cartas al jugador y una al crupier. A partir de aqui el jugador podra doblar la ");
 					 		printf("apuesta, pedir carta hasta que desee (siempre que no supere\nlos 21 puntos) o plantarse. Al plantarse se repartiran cartas al crupier, el cual robara");
-					 		printf("carta siempre que tenga 16\no menos y se plantara con 17 o mas puntos\n");
+					 		printf(" carta siempre que tenga 16\no menos y se plantara con 17 o mas puntos\n");
 						}
 					else
 					printf("Que comience el juego, ");
@@ -190,14 +194,15 @@ int main ()
 							espacios(23);
 							baraja=barajar(baraja);
 							persona[i].saldo= juego(baraja, apuesta, persona[1].saldo);
-							printf("\nTe queda %i saldo, quieres jugar otra ronda?('y' para si),('n' para no)\n",persona[1].saldo);
+							printf("\nTe queda %i de saldo, quieres jugar otra ronda?('y' para si),('n' para no)\n",persona[1].saldo);
 							scanf(" %c",&ronda);
 							}
 						}
 					printf("GRACIAS POR JUGAR VUELVA PRONTO");
 					free(baraja);
-		}
-				
+				}
+				printf("Quiere salir o jugar a otro juego?\n 'e' para salir y 'r' para cambiar de juego");
+				scanf(" %c",&r);
 		     	 break;
 		   	case 3:
 		    	espacios(10);
@@ -398,7 +403,7 @@ int main ()
 		     	break;
 		      
 			}
- 
+ 		
 	}
 		while(r=='r');
 	

@@ -399,7 +399,8 @@ int main ()
 								
 										
 						   }	
-						   
+				printf("Quiere salir o jugar a otro juego?\n 'e' para salir y 'r' para cambiar de juego");
+				scanf(" %c",&r);		   
 		     	break;
 		      
 			}

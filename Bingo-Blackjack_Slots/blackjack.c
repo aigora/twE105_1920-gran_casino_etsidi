@@ -31,7 +31,7 @@ int n = strlen(baraja);
 		{
 		r = aleato(0,n-1);
 		if(baraja[r] != 0)	
-			{printf("holasss");
+			{
 			barajado[z] = baraja[r];
 			baraja[r] = 0;	
 			z++;

@@ -175,13 +175,13 @@ int resultado(int jugador, int crupier, int saldo, int apuesta)
 	{
 		if(jugador>21)
 					{
-					printf("Tienes %i puntos, son mas de 21 has perdido",jugador);
+					printf("Tienes %i puntos, son mas de 21 has perdido J=%i;C=%i",jugador, jugador, crupier);
 					saldo=saldo-apuesta;
 					return saldo;
 					}
 		if(crupier>21)
 					{
-					printf("El crupier tiene %i puntos, son mas de 21 has ganado",crupier);
+					printf("El crupier tiene %i puntos, son mas de 21 has ganado J=%i;C=%i",crupier, jugador, crupier);
 					saldo+=apuesta*2;
 					return saldo;	
 					}

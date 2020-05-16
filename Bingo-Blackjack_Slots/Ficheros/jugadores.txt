@@ -1,7 +1,4 @@
+ 167	luis	lopez	478	
  125	Juian	Gonzalez	15201256	
- 67	pedro	martinez castro	678969	
+ 176	pedro	martinez castro	678969	
  250	Juan	Fernandez Simon	890458	
- 861	manuel	Garcia Lopez	5490000	
- 854	manuela	martinez de la fuente	856790	
-230	Alejandro	gutierrez	548214
-421	pablo	martinez	21548

@@ -14,19 +14,24 @@ typedef struct{
 		  int carton[3][5];
 }usuario;
 void espacios(int n);
-int aleatorio(int minimo,int maximo);
+int aleato(int minimo,int maximo);
+
+	
 
 
 int main ()
 {	srand(time(NULL));
-  int opcion,num,tam,i,aux,salir=0,cont=0,n;
+  int opcion,num,tam,i=0,aux,salir=0,cont=0,n;
   int numbingo[99],bolita,tiradab;
   int j,k,question,ganador=-1,nlinea[30],linea;
   char continuar;
   char r,name[30],pass[30];
   float auf;
   	usuario persona[30];
+  		usuario modif[90];
+  	int lineasfich=0;
   	FILE *usu;
+  	
   		
  	printf("Bienvenido al Gran Casino ETSIDI\n");
 	printf("Comencemos con indicar el numero de participantes y sus datos:\n");
@@ -48,12 +53,14 @@ int main ()
 					printf("Error al abrir el fichero.\n");
 					return -1;
 						}
+						
 				fseek(usu, 0, SEEK_SET);
 					do
-				{
+				{	
 					if(strcmp(name, persona[i].nombre)==0)
 							{salir=1;
 								printf("Escribe tu contrasena:");
+								
 								scanf("%s",pass);
 								while(cont<3&&strcmp(pass,persona[i].contrasena)!=0)
 									{	printf("Contrasena incorrecta, inténtelo de nuevo\n Te quedan %i intentos",3-cont);
@@ -63,13 +70,11 @@ int main ()
 									}
 									if(cont==3)
 										{	printf("error en el incicio de sesion");
+											opcion=0;
 										}
 									if(strcmp(pass,persona[i].contrasena)==0)
 									{printf("Has iniciado sesión correctamente,tu saldo actual es:%i \n ",persona[i].saldo);
-											while(n=!' '){
-											persona[1].nombre[n]=persona[i].nombre[n];	
-											}
-											persona[1].saldo=persona[i].saldo;
+										
 									}
 									
 							}
@@ -297,14 +302,15 @@ int main ()
 					printf("Quiere salir o jugar a otro juego?\n 'e' para salir y 'r' para cambiar de juego");
 				scanf(" %c",&r);
 		      	break;
-		   	 case 4:if(r=='c')
+		   	 case 4:
+				
 		   		espacios(10);
 		    	printf("Has elegido: ");
 		    	printf(" el Bingo\n");
 		    	printf("Pulse 'c' para continuar \n Pulse 'r' para cambiar de juego\n");
 		   		scanf("%s",&r);
 		   			
-		   				
+		   			if(r=='c')	
 				{		reglas(tam);
 		   				for(i=0;i<tam;i++)
 		   				{
@@ -418,9 +424,12 @@ int main ()
 										{	numbingo[k]=k+1;
 										}
 										bolita=aleatorio(1,99);
+										cont=0;
 										while(ganador==-1)
-										{
-												
+										{cont++;
+												if(cont==100)
+													{	ganador=aleatorio(0,tam-1);
+													}
 													printf("\n numero:%i   \n ",bolita);
 														for(i=0;ganador==-1&&i<tam;i++)
 													{
@@ -455,7 +464,7 @@ int main ()
 													{
 													
 														if(numbingo[bolita-1]==0)
-																{	bolita=aleatorio(1,99);
+																{	bolita=aleato(1,99);
 																	tiradab=0;
 																}
 																else
@@ -466,7 +475,6 @@ int main ()
 													}
 														printf("pulse cualquier tecla para sacar otra bola:\n");
 																scanf("%c",&continuar);
-																
 															printf("siguiente numero\n");
 												
 													}
@@ -494,10 +502,66 @@ int main ()
 	}
 		while(r=='r');
 	
+	i=0;
 	
+			usu=fopen("Ficheros/jugadores.txt","r");
+					
+  					if (usu == NULL)
+					{// Si el resultado es NULL mensaje de error
+					printf("Error al abrir el fichero.\n");
+					return -1;
+						}
+							fseek(usu, 0, SEEK_SET);
+						while(fscanf(usu,"%c",&r)!=EOF)
+			{	if(r=='\n') ++lineasfich;
+			}		
+		
+			fseek(usu, 0, SEEK_SET);
+		//se quita el ultimo salto de linea
+				j=0;
+				while(feof(usu)==0)	
+						{	printf("%s",modif[j].nombre);
+						fscanf(usu," %i\t%[^\t]\t%[^\t]\t%[^\t]\n",&modif[j].saldo,modif[j].nombre,modif[j].apellido,modif[j].contrasena);
+						j++;
+						}
+			
+				
+					fclose(usu);
+				
+			for(j=0;j<tam;j++)
+				{	for(i=0;i<lineasfich;i++)
+						{		if(strcmp(modif[i].contrasena, persona[j].contrasena)==0&&strcmp(modif[i].nombre, persona[j].nombre)==0&&strcmp(modif[i].apellido, persona[j].apellido)==0)
+									{	modif[i].saldo=persona[j].saldo;
+									}
+								
+						}
+							
+				}
+	
+		usu=fopen("Ficheros/jugadores.txt","w");
+	
+  					if (usu == NULL)
+					{// Si el resultado es NULL mensaje de error
+					printf("Error al abrir el fichero.\n");
+					return -1;
+						}
+							
+						else
+						{for(i=0;i<lineasfich;i++)
+			{	fprintf(usu," %i\t%s\t%s\t%s\t\n",modif[i].saldo,modif[i].nombre,modif[i].apellido,modif[i].contrasena);
+			}
+						}
+		
+				fclose(usu);
 return 0;
 }
-	
+	int aleato(int minimo,int maximo)
+	{ 
+	srand(time(NULL));    
+		int numero;
+		numero=rand()%((maximo-minimo)+1)+minimo;
+		return numero;
+	}
 	void espacios(int n)
 	{	int i;
 		for(i=0;i<n;i++)
@@ -505,9 +569,4 @@ return 0;
 		}
 	}
 	
-	int aleatorio(int minimo,int maximo)
-	{     int numero;
-		numero=rand()%((maximo-minimo)+1)+minimo;
-		return numero;
-	}
 

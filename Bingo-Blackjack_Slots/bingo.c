@@ -8,7 +8,7 @@ void reglas(int n)
 	}
 	int aleat(int minimo,int maximo)
 	{     int numero;
-	srand(time(NULL));
+
 		numero=rand()%((maximo-minimo)+1)+minimo;
 		return numero;
 	}

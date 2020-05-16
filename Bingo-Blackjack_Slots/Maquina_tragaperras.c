@@ -1,8 +1,9 @@
 #include "Maquina_tragaperras.h"
-
+#include <stdio.h>
+#include <time.h>
 int aleatorio(int minimo,int maximo)
 	{ 
-	srand(time(NULL));    
+	    
 		int numero;
 		numero=rand()%((maximo-minimo)+1)+minimo;
 		return numero;

@@ -69,7 +69,7 @@ int main ()
 										
 									}
 									if(cont==3)
-										{	printf("error en el incicio de sesion");
+										{	printf("error en el inicio de sesion");
 											opcion=0;
 										}
 									if(strcmp(pass,persona[i].contrasena)==0)
@@ -84,7 +84,7 @@ int main ()
 						while(salir==0&&fscanf(usu," %i\t%[^\t]\t%[^\t]\t%[^\t]\n",&persona[i].saldo,persona[i].nombre,persona[i].apellido,persona[i].contrasena)!=EOF);
 					if(salir==0)
 					{		printf("no se ha enocntrado información tuya en el archivo\n");
-									
+									opcion=0;
 								
 					}
 						
@@ -557,7 +557,7 @@ return 0;
 }
 	int aleato(int minimo,int maximo)
 	{ 
-	srand(time(NULL));    
+    
 		int numero;
 		numero=rand()%((maximo-minimo)+1)+minimo;
 		return numero;

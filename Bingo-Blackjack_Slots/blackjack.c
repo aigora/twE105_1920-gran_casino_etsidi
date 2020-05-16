@@ -1,4 +1,5 @@
 #include "blackjack.h"
+
 #include <string.h>
 
 char *crearbaraja(int n)
@@ -24,15 +25,16 @@ char *barajar(char *baraja)
 int n = strlen(baraja);
 	char *barajado = calloc((n+1),1);
 	int r;
-	int i = 0;
-		while(i < n)
+	int z = 0;
+	
+		while(z < n)
 		{
-		r = aleatorio(0,n-1);
+		r = aleato(0,n-1);
 		if(baraja[r] != 0)	
-			{
-			barajado[i] = baraja[r];
+			{printf("holasss");
+			barajado[z] = baraja[r];
 			baraja[r] = 0;	
-			i++;
+			z++;
 			}
 		}
 	free(baraja);

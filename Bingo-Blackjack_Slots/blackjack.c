@@ -1,55 +1,46 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <time.h>
 #include "blackjack.h"
-typedef struct{
-		char nombre[30];
-		char apellido[30];
-		char contrasena[15];
-		int saldo; //int, long int
-		
-}usuario;
 
-int aleatorio(int minimo,int maximo);
-char *crearbaraja(int n);
-char *barajar(char *baraja);
-char *juego(char *baraja,int apuesta, int saldo);
-int cambio(char cartas[]);
-int main()
+#include <string.h>
+
+char *crearbaraja(int n)
 {
-srand(time(NULL));
-usuario persona[30];
-int i, apuesta;
-persona[i].saldo=100000;
-char *baraja,*resultado;
-int n=0;
-	baraja = crearbaraja(2);
-	printf("\n %s \n", baraja);
-	baraja=barajar(baraja);
-	printf("Baraja:\n %s", baraja);
-	printf("\nSe va a jugar con 2 barajas \nBarajando...\nListo!");
-	printf("\n Su saldo es de %i. La apuesta minima son 5\n",persona[i].saldo);
-	printf("Que comience el juego, ");
-	printf("Cuanto desea apostar?\n");
-		scanf("%i",&apuesta);
-		if(apuesta<5||apuesta>persona[i].saldo)
+char *palo = "A234567890JQK";
+int i = 0;
+int palos=0;
+	int v1 = 0;
+	char *cartas;
+	cartas = calloc(sizeof(char)*52+1,n);
+		while(palos < 8)	
 		{
-			printf("Debe cambiar su apuesta");
-			scanf("%i",&apuesta);
-		}
-	resultado= juego(baraja, apuesta, persona[i].saldo);
-	free(baraja);
-	free(resultado);
-return 0;
-}
-	int aleatorio(int minimo,int maximo)
-	{     int numero;
-		numero=rand()%((maximo-minimo)+1)+minimo;
-		return numero;
-	}
+			memcpy(cartas+v1,palo,13); //en memcopy copia de mazo a cartas,
+			v1+=13;
+			palos++;
+		}	
 	
-	char *juego(char *baraja,int apuesta, int saldo)
+	
+	return cartas;
+	}	
+char *barajar(char *baraja)
+{
+int n = strlen(baraja);
+	char *barajado = calloc((n+1),1);
+	int r;
+	int z = 0;
+	
+		while(z < n)
+		{
+		r = aleato(0,n-1);
+		if(baraja[r] != 0)	
+			{
+			barajado[z] = baraja[r];
+			baraja[r] = 0;	
+			z++;
+			}
+		}
+	free(baraja);
+	return barajado;	
+}
+int juego(char *baraja,int apuesta, int saldo)
 	{
 		int i=0,n=0, j=0, k=0;
 		char cartajugador[5];
@@ -64,7 +55,7 @@ return 0;
 		}
 		else
 		printf("Crupier:\t|%c|",cartacrupier[0]);
-		printf("Jugador: ");
+		printf("\nJugador: ");
 		for(i=0;i<2;i++)
 			{
 			cartajugador[i]=baraja[n];
@@ -81,6 +72,13 @@ return 0;
 					j++;
 					}
 			}
+		if(cambio(cartajugador)==21)
+		{
+			printf("BLACKJACK, HAS GANADO");
+			saldo=apuesta*3;
+			return saldo;
+		}
+		else
 		printf("Tienes %i puntos ",cambio(cartajugador));
 		printf("y el Crupier tiene %i puntos|\n",cambio(cartacrupier));
 		printf("Puedes:\nPedir carta:'p'\nDoblar apuesta:'d'\nPlantarte:'f'\n");
@@ -169,27 +167,44 @@ return 0;
 			}	
 		}
 		while(opcion!='e');
-		if(cambio(cartajugador)>21)
+		saldo=resultado(cambio(cartajugador),cambio(cartacrupier),saldo,apuesta);
+		return saldo;
+		
+	}
+int resultado(int jugador, int crupier, int saldo, int apuesta)
+	{
+		if(jugador>21)
 					{
-					printf("Tienes %i puntos, son mas de 21 has perdido",cambio(cartajugador));
+					printf("Tienes %i puntos, son mas de 21 has perdido J=%i;C=%i",jugador, jugador, crupier);
+					saldo=saldo-apuesta;
+					return saldo;
 					}
-		if(cambio(cartacrupier)>21)
+		if(crupier>21)
 					{
-					printf("El crupier tiene %i puntos, son mas de 21 has ganado",cambio(cartacrupier));	
+					printf("El crupier tiene %i puntos, son mas de 21 has ganado J=%i;C=%i",crupier, jugador, crupier);
+					saldo+=apuesta*2;
+					return saldo;	
 					}
-		if(cambio(cartacrupier)>cambio(cartajugador&&cambio(cartacrupier)<=21))
+		if(crupier>jugador&&crupier<=21)
 					{
-					printf("El crupier tiene mas puntos que tu has perdido J=%i;C=%i",cambio(cartajugador),cambio(cartacrupier));
+					printf("El crupier tiene mas puntos que tu has perdido J=%i;C=%i",jugador,crupier);
+					saldo=saldo-apuesta;
+					return saldo;
 					}
-		if(cambio(cartacrupier)<cambio(cartajugador)&&cambio(cartajugador)<=21)
+		if(crupier<jugador&&jugador<=21)
 					{
-					printf("Tienes mas puntos que el Crupier, HAS GANADO! J=%i;C=%i",cambio(cartajugador),cambio(cartacrupier));
+					printf("Tienes mas puntos que el Crupier, HAS GANADO! J=%i;C=%i",jugador,crupier);
+					saldo+=apuesta*2;
+					return saldo;
 					}
-		if(cambio(cartacrupier)==cambio(cartajugador))
+		if(crupier==jugador)
 					{
-					printf("Habeis empatado J=%i;C=%i",cambio(cartajugador),cambio(cartacrupier));
-					}		
-		return baraja;
+					printf("Habeis empatado J=%i;C=%i",jugador,crupier);
+					
+					return saldo;
+					}
+		printf("fallo");
+		return 0;
 	}
 	int cambio(char cartas[])
 	{

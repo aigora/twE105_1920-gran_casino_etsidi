@@ -1,10 +1,8 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
 #include <time.h>
-
-void espacios(int n);
-int aleatorio(int minimo,int maximo);
+#include "blackjack.h"
 typedef struct{
 		char nombre[30];
 		char apellido[30];
@@ -13,10 +11,13 @@ typedef struct{
 		
 }usuario;
 
-int main ()
-{	srand(time(NULL));
+int aleatorio(int minimo,int maximo);
+void espacios(int n);
+int main()
+{
+srand(time(NULL));
   int opcion,num,tam,i,aux,salir=0,cont=0;
-  char r,name[30],pass[30];
+  char r,n,name[30],pass[30];
   float auf;
   	usuario persona[30];
   	FILE *usu;
@@ -58,7 +59,12 @@ int main ()
 										{	printf("error en el incicio de sesion");
 										}
 									if(strcmp(pass,persona[i].contrasena)==0)
-									{		printf("Has iniciado sesión correctamente,tu saldo actual es:%i \n ",persona[i].saldo);
+									{
+											printf("Has iniciado sesión correctamente,tu saldo actual es:%i \n ",persona[i].saldo);
+											while(n=!' '){
+											persona[1].nombre[n]=persona[i].nombre[n];	
+											}
+											persona[1].saldo=persona[i].saldo;
 									}
 									
 							}
@@ -67,14 +73,11 @@ int main ()
 						}
 						while(salir==0&&fscanf(usu," %i\t%[^\t]\t%[^\t]\t%[^\t]\n",&persona[i].saldo,persona[i].nombre,persona[i].apellido,persona[i].contrasena)!=EOF);
 					if(salir==0)
-					{		printf("no se ha enocntrado información tuya en el archivo\n");
-									
-								
+					{		
+					printf("no se ha enocntrado información tuya en el archivo\n");
 					}
-						
-					
-						fclose(usu);
-				}
+				fclose(usu);		
+			}
 					
     	if(opcion==0)
     		{
@@ -112,6 +115,7 @@ int main ()
 				}
 			}
 	}
+	printf("\n%i\n",persona[1].saldo);
 	do
 	{
   		printf("Escoge entre una de los siguientes juegos:\n");
@@ -145,45 +149,70 @@ int main ()
 				printf("Has elegido: ");
 		   		printf(" Blackjack\n");
 		    	printf("Pulse 'c' para continuar \n Pulse 'r' para cambiar de juego\n");
-		    	scanf("%s",&r);
-		     	 break;
-		   	case 3:
-		    	espacios(10);
-		    	printf("Has elegido: ");
-		    	printf(" la Maquina de slots\n");
-		    	printf("Pulse 'c' para continuar \n Pulse 'r' para cambiar de juego\n");
-		    	scanf("%s",&r);
-		      	break;
-		   	 case 4:
-		   		espacios(10);
-		    	printf("Has elegido: ");
-		    	printf(" el Bingo\n");
-		    	printf("Pulse 'c' para continuar \n Pulse 'r' para cambiar de juego\n");
-		   		scanf("%s",&r);
-		   			if(r=='c')
-		   				{	
-						   }
-		     	break;
-		      
+		    	scanf(" %c",&r);
+		    	if(r=='c')
+		    	{
+		    	
+int apuesta;
+char *baraja;
+char reglas,ronda;
+int n=0,resultado;
+	baraja = crearbaraja(2);
+	printf("\n %s \n", baraja);
+	baraja=barajar(baraja);
+	printf("\nSe va a jugar con 2 barajas \nBarajando...\nListo!");
+	printf("\nSu saldo es de %i. La apuesta minima son 5\n",persona[1].saldo);
+	printf("Desea una breve explicacion de las reglas?('y' para si),('n' para no)\n");
+		scanf(" %c", &reglas);
+		if(reglas=='y')
+		{
+	 		printf("El blackjack es un juego de cartas en el que el jugador juega contra el crupier. El objetivo es quedar lo mas cerca de\n21 puntos sin pasarse.");
+	 		printf("Las figuras valen 10 puntos y el resto de cartas su valor numerico. El As actua como un comodin y\nvale 11 o 1 puntos dependiendo de lo que ");
+	 		printf("favorezca al jugador. Cada ronda comenzara repartiendo dos cartas al jugador y una al crupier. A partir de aqui el jugador podra doblar la ");
+	 		printf("apuesta, pedir carta hasta que desee (siempre que no supere\nlos 21 puntos) o plantarse. Al plantarse se repartiran cartas al crupier, el cual robara");
+	 		printf("carta siempre que tenga 16\no menos y se plantara con 17 o mas puntos\n");
+		}
+	else
+	printf("Que comience el juego, ");
+	printf("Cuanto desea apostar?\n");
+		scanf("%i",&apuesta);
+		if(apuesta<5||apuesta>persona[1].saldo)
+		{
+			printf("Debe cambiar su apuesta\n");
+			scanf("%i",&apuesta);
+		}
+	persona[1].saldo= juego(baraja, apuesta, persona[1].saldo);
+	printf("\nTe queda %i saldo, quieres jugar otra ronda?('y' para si),('n' para no)\n",persona[1].saldo);
+	scanf(" %c",&ronda);
+		while(ronda!='n')
+		{
+			if(ronda=='y')
+			{
+			espacios(23);
+			baraja=barajar(baraja);
+			persona[i].saldo= juego(baraja, apuesta, persona[1].saldo);
+			printf("\nTe queda %i saldo, quieres jugar otra ronda?('y' para si),('n' para no)\n",persona[1].saldo);
+			scanf(" %c",&ronda);
 			}
- 
-	}
-		while(r=='r');
+		}
+	printf("GRACIAS POR JUGAR VUELVA PRONTO");
+	free(baraja);
+		}
 	
+}
+}
+	while(r=='r');
 	
 return 0;
 }
-	
+	int aleatorio(int minimo,int maximo)
+	{     int numero;
+		numero=rand()%((maximo-minimo)+1)+minimo;
+		return numero;
+	}
 	void espacios(int n)
 	{	int i;
 		for(i=0;i<n;i++)
 		{	printf("\n");
 		}
 	}
-	
-	int aleatorio(int minimo,int maximo)
-	{     int numero;
-		numero=rand()%((maximo-minimo)+1)+minimo;
-		return numero;
-	}
-

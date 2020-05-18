@@ -4,3 +4,4 @@ int comprobarColor(int numero);
 int comprobarMitad(int numero);
 int comprobarColumna(int numero);
 int comprobarDocena(int numero);
+void reglasRuleta();

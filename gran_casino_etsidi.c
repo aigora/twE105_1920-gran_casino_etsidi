@@ -536,7 +536,7 @@ while(r=='r');
 		//se quita el ultimo salto de linea
 				j=0;
 				while(feof(usu)==0)	
-						{	printf("%s",modif[j].nombre);
+						{
 						fscanf(usu," %i\t%[^\t]\t%[^\t]\t%[^\t]\n",&modif[j].saldo,modif[j].nombre,modif[j].apellido,modif[j].contrasena);
 						j++;
 						}

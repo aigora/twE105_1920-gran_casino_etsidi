@@ -519,7 +519,7 @@ int main ()
 while(r=='r');
 	
 	i=0;
-		printf("hola\n");
+	
 			usu=fopen("Ficheros/jugadores.txt","r");
 					
   					if (usu == NULL)
@@ -531,7 +531,7 @@ while(r=='r');
 						while(fscanf(usu,"%c",&r)!=EOF)
 			{	if(r=='\n') ++lineasfich;
 			}		
-		printf("hola\n");
+		
 			fseek(usu, 0, SEEK_SET);
 		//se quita el ultimo salto de linea
 				j=0;
@@ -543,8 +543,7 @@ while(r=='r');
 			
 				
 					fclose(usu);
-		printf("hola\n");
-			for(j=0;j<tam;j++)
+				for(j=0;j<tam;j++)
 				{	for(i=0;i<lineasfich;i++)
 						{		if(strcmp(modif[i].contrasena, persona[j].contrasena)==0&&strcmp(modif[i].nombre, persona[j].nombre)==0&&strcmp(modif[i].apellido, persona[j].apellido)==0)
 									{	modif[i].saldo=persona[j].saldo;
@@ -569,7 +568,6 @@ while(r=='r');
 						}
 		
 				fclose(usu);
-		
 return 0;
 }
 	int aleato(int minimo,int maximo)

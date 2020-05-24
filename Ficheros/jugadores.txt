@@ -1,8 +1,5 @@
- 177	luis	lopez	478	
+ 171	luis	lopez	478	
  125	Juian	Gonzalez	15201256	
  204	pedro	martinez castro	678969	
  250	Juan	Fernandez Simon	890458	
-
-150	uan	dhioa	kiloj
-14	sasdsa	fredn	1234
-123	asdf	asdf	1234
+ 1179	1234	1234	1234	

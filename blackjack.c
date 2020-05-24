@@ -75,7 +75,7 @@ int juego(char *baraja,int apuesta, int saldo)
 		if(cambio(cartajugador)==21)
 		{
 			printf("BLACKJACK, HAS GANADO");
-			saldo=apuesta*3;
+			saldo=saldo+(apuesta*3);
 			return saldo;
 		}
 		else

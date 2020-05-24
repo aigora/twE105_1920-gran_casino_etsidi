@@ -11,126 +11,149 @@ void reglasRuleta()
 		printf("Pulse 2 para jugar");
 }
 
-int comprobarPar(int numero)
+int compruebaPar(int numero)
 {
-	int par, impar;
-	if(numero%2==1){
-		par++;
-		return 1;
-	}
-	else{
-		impar++;
-		return -1;
-	}
+    if(numero%2==0){
+        return 1;
+    }
+    else{
+    return 0;
+    }
+   
 }
 
-int comprobarColor(int numero)
+int compruebaColor(int numero)
 {
-    int rojo, negro;
-	if(numero==1||numero==3||numero==5||numero==7||numero==9||
-	numero==12||numero==14||numero==16||numero==18||numero==21||
-	numero==23||numero==25||numero==19||numero==27||numero==30||
-	numero==32||numero==34||numero==36){
-	rojo++;
-	return 1;
-	}
-	else{
-		negro++;
-		return -1;
-	}
+    if(numero==1||numero==3||numero==5||numero==7||numero==9||
+    numero==12||numero==14||numero==16||numero==18||numero==21||
+    numero==23||numero==25||numero==19||numero==27||numero==30||
+    numero==32||numero==34||numero==36){
+        return 1;
+    }
+    else{
+    return 0;
+    }
+   
 }
 
-int comprobarMitad(int numero)
+int compruebaMitad(int numero)
 {
-	int n;
-	srand(time(NULL));
-    n = rand() % 37 + 1;
-	int m1, m2;
-	if(n<=18&&n>0){
-		m1++;
-		return m1;
-	}
-	else if(n<37&&n>18){
-	    m2++;
-		return m2;
-	}
+    if(numero<=18&&numero>0){
+        return 1;
+    }
+    else{
+    return 0;
+    }
+   
 }
 
-int comprobarColumna(int numero)
+int compruebaColumna(int numero)
+{
+	int i;
+	int c1;
+	int c2;
+	int c3;
+	for(i=0; i<13; i++){
+	
+    if(c1=1+3*i){
+        return 1;
+    }
+    else if (c2=2+3*i){
+    return 0;
+    }
+    else if (c3=3+3*i){
+    	return 2;
+	}
+	}
+   
+}
+
+int compruebaDocena(int numero)
+{
+    if(numero>=1&&numero<=12){
+        return 1;
+    }
+    else if(numero>=12&&numero<=24){
+    return 0;
+    }
+    else{
+    	return 2;
+	}
+   
+}
+
+int compruebaLinea(int numero)
+{
+    if(numero>=1&&numero<=6){
+    return 1;
+    }
+    else if(numero>6&&numero<=12){
+    return 2;
+    }
+    else if(numero>12&&numero<=18){
+    return 3;
+    }
+    else if(numero>18&&numero<=24){
+    return 4;
+    }
+    else if(numero>24&&numero<=30){
+    return 5;
+    }
+    else{
+    	return 6;
+	}
+   
+}
+
+int compruebaCalle(int numero)
+{
+    if(numero>=1&&numero<=3){
+    return 1;
+    }
+    else if(numero>3&&numero<=6){
+    return 2;
+    }
+    else if(numero>6&&numero<=9){
+    return 3;
+    }
+    else if(numero>9&&numero<=12){
+    return 4;
+    }
+    else if(numero>12&&numero<=15){
+    return 5;
+    }
+    else if(numero>15&&numero<=18){
+    return 6;
+    }
+    else if(numero>18&&numero<=21){
+    return 7;
+    }
+    else if(numero>21&&numero<=24){
+    return 8;
+    }
+    else if(numero>24&&numero<=27){
+    return 9;
+    }
+    else if(numero>27&&numero<=30){
+    return 10;
+    }
+    else if(numero>30&&numero<=33){
+    return 11;
+    }
+    else{
+    	return 12;
+	}
+   
+}
+
+int aleato(int minimo,int maximo)
 { 
-int i, n;
-
-	srand(time(NULL));
-    n = rand() % 37 + 1;
-    int col1, col2, col3;
-	for(i=0; i<12; i++)
-	{
-		col1=1+3*i;
-		col2=2+3*i;
-		col3=3+3*i;
-	}
-	if(n==col1){
-		col1++;
-		return col1;
-	}
-	else if(n==col2){
-		col2++;
-		return col2;
-	}
-	else if(n==col3){
-		col3++;
-		return col3;
-	}
+    
+	int numero;
+	numero=rand()%((maximo-minimo)+1)+minimo;
+	return numero;
 }
-
-int comprobarDocena(int numero)
-{
-	int n;
-	srand(time(NULL));
-    n = rand() % 37 + 1;
-	int d1, d2, d3;
-	if(n<=12&&n>0)
-	{
-	d1++;
-	return ;
-	}
-	else if(n>12&&n<=24)
-	{
-	d2++;
-	return 0;
-	}
-	else if(n>24&&n<=36)
-	{
-	d3++;
-	return -1;
-	}
-}
-
-int comprobarFila(int n)
-{
-	int n;
-	srand(time(NULL));
-    n = rand() % 37 + 1;
-    fila[p]=
-}
-
-int comprobarCalle(int n)
-{
-	int n, k;
-	srand(time(NULL));
-    n = rand() % 37 + 1;
-	int calle0[6]={1,2,3,4,5,6};
-	int calle1[6]={7,8,9,10,11,12};
-	int calle2[6]={13,14,15,16,17,18};
-	int calle3[6]={19,20,21,22,23,24};
-	int calle4[6]={25,26,27,28,29,30};
-	int calle5[6]={31,32,33,34,35,36};
-	for(k=0;k<6;k++){
-		calle[k];
-	}
-}
-
-
+       
 
 
 

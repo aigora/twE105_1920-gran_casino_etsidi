@@ -146,7 +146,7 @@ int compruebaCalle(int numero)
    
 }
 
-int aleato(int minimo,int maximo)
+int aleator(int minimo,int maximo)
 { 
     
 	int numero;

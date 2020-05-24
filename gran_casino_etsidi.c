@@ -5,7 +5,7 @@
 #include "bingo.h"
 #include "blackjack.h"
 #include "Maquina_tragaperras.h"
-
+#include "ruleta.h"
 typedef struct{
 		char nombre[30];
 		char apellido[30];
@@ -224,7 +224,7 @@ int main ()
 					}
 					free(baraja);
 					}
-				printf("Quiere salir o jugar a otro juego?\n 'e' para salir y 'r' para cambiar de juego");
+				printf("Quiere salir o jugar a otro juego?\n 'e' para salir y 'r' para cambiar de juego\n");
 				scanf(" %c",&r);
 		     	 break;
 		   	case 3:

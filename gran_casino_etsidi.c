@@ -22,7 +22,7 @@ int aleato(int minimo,int maximo);
 int main ()
 {	srand(time(NULL));
   int opcion,num,tam,i=0,aux,salir=0,cont=0,n;
-  int numbingo[99],bolita,tiradab;
+  int numbingo[99],bolita,tiradab,ca;
   int j,k,question,ganador=-1,nlinea[30],linea;
   char continuar;
   char r,name[30],pass[30];
@@ -31,6 +31,7 @@ int main ()
   		usuario modif[90];
   	int lineasfich=0;
   	FILE *usu;
+  	FILE *cart;
   	
   		
  	printf("Bienvenido al Gran Casino ETSIDI\n");
@@ -43,6 +44,10 @@ int main ()
 	{	salir=0;
 		printf("Jugador n %i \n Has jugado alguna vez ya en el Gran Casino?(Si:1//No:0)\n",i+1);
 		scanf("%i",&opcion);
+		while(opcion!=0&&opcion!=1)
+			{	printf("Introduce una de las opciones");
+				scanf("%i",&opcion);
+			}
 		if(opcion==1)
 			{	printf("Escribe tu nombre: ");
 				scanf(" %s",name);
@@ -60,7 +65,6 @@ int main ()
 					if(strcmp(name, persona[i].nombre)==0)
 							{salir=1;
 								printf("Escribe tu contrasena:");
-								
 								scanf("%s",pass);
 								while(cont<3&&strcmp(pass,persona[i].contrasena)!=0)
 									{	printf("Contrasena incorrecta, inténtelo de nuevo\n Te quedan %i intentos",3-cont);
@@ -123,7 +127,7 @@ int main ()
 						return -1;
 						}
 				fseek(usu, 0, SEEK_END);
-				fprintf(usu,"\n%i\t%s\t%s\t%s",persona[i].saldo,persona[i].nombre,persona[i].apellido,persona[i].contrasena);
+				fprintf(usu,"\n %i\t%s\t%s\t%s",persona[i].saldo,persona[i].nombre,persona[i].apellido,persona[i].contrasena);
 				fclose(usu);
 				}
 			}
@@ -375,28 +379,31 @@ int main ()
 											   }						
 										persona[i].saldo-=5	;			   
 		   								
-		   										usu=fopen("Ficheros/cartones.txt","r");	
-													if (usu == NULL)
+		   										cart=fopen("Ficheros/cartones.txt","r");	
+													if (cart == NULL)
 														{// Si el resultado es NULL mensaje de error
 																printf("Error al abrir el fichero.\n");
 																return -1;
 															}
+												for(ca=-1;ca<i;ca++)
+												{
 												
 												for(k=0;k<3;k++)
 												
 												{	
 												for(j=0;j<5;j++)
 														{		if(j==4&&k==2)
-															{	fscanf(usu,"%i\n",&persona[i].carton[k][j]);
+															{	fscanf(cart,"%i\n",&persona[i].carton[k][j]);
 															
 															}
-														fscanf(usu,"%i,",&persona[i].carton[k][j]);
+														fscanf(cart,"%i,",&persona[i].carton[k][j]);
 													
 														}
 												}
+												}
 												ordenarcarton(persona[i].carton,3,5);
 												display(persona[i].carton,3,5);
-												fclose(usu);
+											
 												break;
 									   }
 								
@@ -434,7 +441,7 @@ int main ()
 						
 									
 										}
-										
+											fclose(cart);
 										for(k=0;k<99;k++)
 										{	numbingo[k]=k+1;
 										}
@@ -488,21 +495,25 @@ int main ()
 																}
 														
 													}
-														printf("pulse cualquier tecla para sacar otra bola:\n");
+														printf("pulse enter para sacar otra bola:\n");
 																scanf("%c",&continuar);
-															printf("siguiente numero\n");
+																if(ganador==-1)
+																	{	printf("siguiente numero\n");
+																	}
+																	else printf("Pulse enter para salir del bingo!\n");
+															
 												
 													}
-										printf("Felicidades %s, has Ganado el bingo!",persona[ganador].nombre);
-										saldobingo(&persona[i].saldo,80);
+										printf("Felicidades %s, has Ganado el bingo!\n",persona[ganador].nombre);
+										saldobingo(&persona[ganador].saldo,80);
 										for(i=0;i<tam;i++)
 											{	if(nlinea[i]!=0)
 													{linea=12*nlinea[i];
 													saldobingo(&persona[i].saldo,linea);
-													printf("%s tu saldo es: %i",persona[i].nombre,persona[i].saldo);
+													printf("%s tu saldo es: %i\n",persona[i].nombre,persona[i].saldo);
 														}	
 														else 
-														{	printf("%s tu saldo es: %i",persona[i].nombre,persona[i].saldo);
+														{	printf("%s tu saldo es: %i\n",persona[i].nombre,persona[i].saldo);
 														}
 											}
 								

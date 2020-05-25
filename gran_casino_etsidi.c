@@ -345,17 +345,17 @@ int main ()
 		   					scanf("%i",&aux);
 		   						switch(aux)
 		   							{	case 1:
-		   								printf("Se te van a descortar 7 monedas de tu saldo");
+		   								printf("Se te van a descortar 7 monedas de tu saldo\n");
 		   								while((persona[i].saldo-7)<0)
 		   									{	printf("No tienes dinero suficiente, mete mas dinero en tu saldo si queires continuar:");
 		   										scanf("%i",&persona[i].saldo);
 											   }						
 										persona[i].saldo-=7	;			   
 		   								disenocarton(persona[i].carton,3,5);
-		   								
+		   								ordenarcarton(persona[i].carton,3,5);
 		   								break;
 		   								case 0:
-		   									printf("Se te van a descortar 7 monedas de tu saldo\n");
+		   									printf("\n Se te van a descortar 7 monedas de tu saldo\n");
 		   										while((persona[i].saldo-7)<0)
 		   											{	printf("No tienes dinero suficiente, mete mas dinero en tu saldo si queires continuar:\n");
 		   												scanf("%i",&persona[i].saldo);
@@ -367,7 +367,7 @@ int main ()
 													   }
 		   									
 		   											display(persona[i].carton,3,5);
-		   										printf("notas algun error, tu cartón es el mismo que el de otro jugador?(Si:1;No=0)");
+		   										printf("\n notas algun error, tu cartón es el mismo que el de otro jugador?(Si:1;No=0)");
 		   											
   												scanf("%i",&question);
   												while(question==1)
@@ -415,7 +415,10 @@ int main ()
 									   }
 								
 								display(persona[i].carton,3,5);
-								printf("Quieres guardarlo en un Fichero para próximas jugadas? (si:1||no:0)\n");
+								if(aux==2)
+								printf("continuemos\n");
+								else
+								{	printf("Quieres guardarlo en un Fichero para proximas jugadas? (si:1||no:0)\n");
 		   									scanf("%i",&question);
 		   									if(question==0)
 		   										{	printf("perfecto, vamos a continuar\n");
@@ -445,6 +448,8 @@ int main ()
 												
 												fclose(usu);
 												   }
+								}
+							
 						
 									
 										}
@@ -469,23 +474,25 @@ int main ()
 															case 1:
 																printf("Bingo para %s!!\n",persona[i].nombre);
 																saldobingo(&persona[i].saldo,80);
-															
+																printf("%s:\n",persona[i].nombre);
+																display(persona[i].carton,3,5);
 																ganador=i;
 																break;
 														case 2:
 															printf("Linea para %s!!\n",persona[i].nombre);
-																
+																	printf("%s:\n",persona[i].nombre);
+																display(persona[i].carton,3,5);
 																nlinea[i]++;
 																if(nlinea[i]>3)
 																	{	nlinea[i]=3;
 																	}
 															break;
 															case 0:
-																														
+																		printf("%s:\n",persona[i].nombre);
+																display(persona[i].carton,3,5);													
 															break;
 														}
-														printf("%s:\n",persona[i].nombre);
-																display(persona[i].carton,3,5);
+													
 													
 													}
 													tiradab=0;

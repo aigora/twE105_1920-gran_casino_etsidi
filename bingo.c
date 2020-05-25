@@ -136,7 +136,7 @@ void disenocarton(int matriz[][5],int n, int c)
 						}
 				}
 		else if(comprobarcarton(matriz,3,5)==2)
-			printf("Tu carton se ha diseñado perfectamente!\n\n");
+			printf("Tu carton se ha disenado perfectamente!\n\n");
 	
 }
 
@@ -365,7 +365,7 @@ void saldobingo(int *saldo,int mas)
 						}
 						
 				
-						if((check[0]==5)&&(check[1]==5)&&(check[0]==5))
+						if((check[0]==5)&&(check[1]==5)&&(check[2]==5))
 					{	return 1;
 						bingo=1 ;//1==bingo
 				}

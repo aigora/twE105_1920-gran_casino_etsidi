@@ -10,5 +10,5 @@ int comprobarcarton(int matriz[][5], int n,int c);
 void ordenarcarton(int matriz[][5],int n, int c);
 void cartonaleatorio(int matriz[][5],int n, int c);
 int bingolinea(int matriz[][5],int n, int c,int numero);
-void saldobingo(int *saldo,int mas);
+void saldobingo(float *saldo,float mas);
 

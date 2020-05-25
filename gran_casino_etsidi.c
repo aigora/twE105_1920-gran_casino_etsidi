@@ -10,8 +10,8 @@ typedef struct{
 		char nombre[30];
 		char apellido[30];
 		char contrasena[15];
-		int saldo; //int, long int
-		  int carton[3][5];
+		float saldo; //int, long int
+		int carton[3][5];
 }usuario;
 void espacios(int n);
 int aleato(int minimo,int maximo);
@@ -23,7 +23,8 @@ int main ()
 {	srand(time(NULL));
   int opcion,num,tam,i=0,aux,salir=0,cont=0,n;
   int numbingo[99],bolita,tiradab,ca;
-  int j,k,question,ganador=-1,nlinea[30],linea;
+  int j,k,question,ganador=-1,nlinea[30];
+  float linea;
   char continuar;
   char r,name[30],pass[30];
   float auf;
@@ -84,7 +85,7 @@ int main ()
 											opcion=0;
 										}
 									if(strcmp(pass,persona[i].contrasena)==0)
-									{printf("Has iniciado sesion correctamente,tu saldo actual es:%i \n ",persona[i].saldo);
+									{printf("Has iniciado sesion correctamente,tu saldo actual es:%f \n ",persona[i].saldo);
 										
 									}
 									
@@ -92,7 +93,7 @@ int main ()
 							
 								
 						}
-						while(salir==0&&fscanf(usu," %i\t%[^\t]\t%[^\t]\t%[^\t]\n",&persona[i].saldo,persona[i].nombre,persona[i].apellido,persona[i].contrasena)!=EOF);
+						while(salir==0&&fscanf(usu," %f\t%[^\t]\t%[^\t]\t%[^\t]\n",&persona[i].saldo,persona[i].nombre,persona[i].apellido,persona[i].contrasena)!=EOF);
 					if(salir==0)
 					{		printf("no se ha enocntrado información tuya en el archivo\n");
 									opcion=0;
@@ -111,7 +112,7 @@ int main ()
 			printf("Escribe tu apellido:\n");
 			scanf(" %[^\n]", persona[i].apellido);
 			printf("Escribe tu saldo:\n");
-			scanf(" %i", &persona[i].saldo);
+			scanf(" %f", &persona[i].saldo);
 			
 			printf("Escribe tu contraseña:\n");
 			scanf(" %[^\n]", persona[i].contrasena);
@@ -134,7 +135,7 @@ int main ()
 						return -1;
 						}
 				fseek(usu, 0, SEEK_END);
-				fprintf(usu,"\n %i\t%s\t%s\t%s",persona[i].saldo,persona[i].nombre,persona[i].apellido,persona[i].contrasena);
+				fprintf(usu,"\n %f\t%s\t%s\t%s",persona[i].saldo,persona[i].nombre,persona[i].apellido,persona[i].contrasena);
 				fclose(usu);
 				}
 			}
@@ -540,11 +541,12 @@ int main ()
 										for(i=0;i<tam;i++)
 											{	if(nlinea[i]!=0)
 													{linea=12*nlinea[i];
+													printf("\t \t %f \t \t", linea);
 													saldobingo(&persona[i].saldo,linea);
-													printf("%s tu saldo es: %i\n",persona[i].nombre,persona[i].saldo);
+													printf("%s tu saldo es: %f\n",persona[i].nombre,persona[i].saldo);
 														}	
 														else 
-														{	printf("%s tu saldo es: %i\n",persona[i].nombre,persona[i].saldo);
+														{	printf("%s tu saldo es: %f\n",persona[i].nombre,persona[i].saldo);
 														}
 											}
 								
@@ -579,7 +581,7 @@ while(r=='r');
 				j=0;
 				while(feof(usu)==0)	
 						{
-						fscanf(usu," %i\t%[^\t]\t%[^\t]\t%[^\t]\n",&modif[j].saldo,modif[j].nombre,modif[j].apellido,modif[j].contrasena);
+						fscanf(usu," %f\t%[^\t]\t%[^\t]\t%[^\t]\n",&modif[j].saldo,modif[j].nombre,modif[j].apellido,modif[j].contrasena);
 						j++;
 						}
 			
@@ -605,7 +607,7 @@ while(r=='r');
 							
 						else
 						{for(i=0;i<lineasfich;i++)
-			{	fprintf(usu," %i\t%s\t%s\t%s\t\n",modif[i].saldo,modif[i].nombre,modif[i].apellido,modif[i].contrasena);
+			{	fprintf(usu," %f\t%s\t%s\t%s\t\n",modif[i].saldo,modif[i].nombre,modif[i].apellido,modif[i].contrasena);
 			}
 						}
 		

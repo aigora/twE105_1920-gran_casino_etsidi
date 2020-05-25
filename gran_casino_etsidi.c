@@ -74,7 +74,7 @@ int main ()
 								printf("Escribe tu contrasena:");
 								scanf("%s",pass);
 								while(cont<3&&strcmp(pass,persona[i].contrasena)!=0)
-									{	printf("Contrasena incorrecta, inténtelo de nuevo\n Te quedan %i intentos",3-cont);
+									{	printf("Contrasena incorrecta, intentelo de nuevo\n Te quedan %i intentos",3-cont);
 										scanf("%s",pass);
 										cont++;
 										
@@ -84,7 +84,7 @@ int main ()
 											opcion=0;
 										}
 									if(strcmp(pass,persona[i].contrasena)==0)
-									{printf("Has iniciado sesión correctamente,tu saldo actual es:%i \n ",persona[i].saldo);
+									{printf("Has iniciado sesion correctamente,tu saldo actual es:%i \n ",persona[i].saldo);
 										
 									}
 									

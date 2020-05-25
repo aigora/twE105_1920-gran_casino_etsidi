@@ -110,7 +110,7 @@ int comprobarcarton(int matriz[][5], int n,int c)
 	}
 	
 void disenocarton(int matriz[][5],int n, int c)
-{	int v[5],i,j;
+{	int i,j;
 	
 	
 			printf("Cada fila contendra 5 elementos, cada uno de una decena:");

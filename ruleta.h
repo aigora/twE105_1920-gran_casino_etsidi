@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 int aleato(int minimo,int maximo);
 int comprobarPar(int numero);
 int comprobarColor(int numero);

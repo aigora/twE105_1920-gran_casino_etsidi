@@ -1,3 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include "ruleta.h"
+
 void reglasRuleta()
 {
 		printf("Las reglas de la ruleta:\n");

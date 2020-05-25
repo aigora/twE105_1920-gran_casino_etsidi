@@ -5,7 +5,7 @@
 #include "bingo.h"
 #include "blackjack.h"
 #include "Maquina_tragaperras.h"
-
+#define N 99
 typedef struct{
 		char nombre[30];
 		char apellido[30];
@@ -27,8 +27,8 @@ int main ()
   char continuar;
   char r,name[30],pass[30];
   float auf;
-  	usuario persona[30];
-  		usuario modif[90];
+  	usuario persona[N];
+  		usuario modif[N];
   	int lineasfich=0;
   	FILE *usu;
   	FILE *cart;
@@ -51,6 +51,12 @@ int main ()
 		if(opcion==1)
 			{	printf("Escribe tu nombre: ");
 				scanf(" %s",name);
+				for(k=0;k<i;k++)
+								{	while(strcmp(name,persona[k].nombre)==0)
+									{	printf("Escribe de nuevo tu nombre: ");
+										scanf(" %s",name);
+									}
+								}
 				printf("vamos a buscarte...\n");
 				usu=fopen("Ficheros/jugadores.txt","r");
   					if (usu == NULL)
@@ -64,6 +70,7 @@ int main ()
 				{	
 					if(strcmp(name, persona[i].nombre)==0)
 							{salir=1;
+							
 								printf("Escribe tu contrasena:");
 								scanf("%s",pass);
 								while(cont<3&&strcmp(pass,persona[i].contrasena)!=0)

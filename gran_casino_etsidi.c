@@ -176,10 +176,11 @@ int main ()
 		    	scanf("%s",&r);
 		    	if(r=='c')
 		    	{
-		    	int apuesta;
+		    	float apuesta;
 				char *baraja;
 				char regla,ronda;
-				int n=0,resultado;
+				int n=0;
+				float resultado;
 				i=0;
 					baraja = crearbaraja(2);
 					printf("\n %s \n", baraja);
@@ -187,10 +188,15 @@ int main ()
 					printf("\nSe va a jugar con 2 barajas \nBarajando...\nListo!");
 					for(i=0;i<tam;i++){
 					
-					printf("\n%s su saldo es de %i. \n",persona[i].nombre,persona[i].saldo);
+					printf("\n%s su saldo es de %.2f. \n",persona[i].nombre,persona[i].saldo);
 				}
 					printf("Desea una breve explicacion de las reglas?('y' para si),('n' para no)\n");
 						scanf(" %c", &regla);
+						while(regla!='y'&&regla!='n')
+						{
+						printf("Debe introducir 'y' o 'n'");
+						scanf(" %c", &regla);
+						}
 						if(regla=='y')
 						{
 					 		printf("El blackjack es un juego de cartas en el que el jugador juega contra el crupier. El objetivo es quedar lo mas cerca de\n21 puntos sin pasarse.");
@@ -199,23 +205,26 @@ int main ()
 					 		printf("apuesta, pedir carta hasta que desee (siempre que no supere\nlos 21 puntos) o plantarse. Al plantarse se repartiran cartas al crupier, el cual robara");
 					 		printf(" carta siempre que tenga 16\no menos y se plantara con 17 o mas puntos\n");
 						}
-					else
-					printf("Que comience el juego, ");
+					if(regla=='n')
+					{
+						printf("Que comience el juego, ");
+					}
+					
 					for(i=0;i<tam;i++)
 					{
 					printf("%s te toca jugar:\n",persona[i].nombre);
 					printf("Cuanto desea apostar? La apuesta minima es 5\n");
-						scanf("%i",&apuesta);
+						scanf(" %f",&apuesta);
 						while(apuesta<5||apuesta>persona[i].saldo)
 						{
 							printf("Debe cambiar su apuesta\n");
-							scanf("%i",&apuesta);
+							scanf(" %f",&apuesta);
 						}
 					
 					persona[i].saldo= juego(baraja, apuesta, persona[i].saldo);
 					
 					
-					printf("\n%s te queda %i saldo\n",persona[i].nombre,persona[i].saldo);
+					printf("\n%s te queda %.2f saldo\n",persona[i].nombre,persona[i].saldo);
 				
 					
 					printf("%s quieres jugar otra ronda?('y' para si),('n' para no)\n",persona[i].nombre);
@@ -227,10 +236,13 @@ int main ()
 							espacios(23);
 							baraja=barajar(baraja);
 							persona[i].saldo= juego(baraja, apuesta, persona[i].saldo);
-							printf("\n%s te queda %i saldo\n",persona[i].nombre,persona[i].saldo);
+							printf("\n%s te queda %.2f saldo\n",persona[i].nombre,persona[i].saldo);
 							printf("quieres jugar otra ronda?('y' para si),('n' para no)\n");
 							scanf(" %c",&ronda);
 							}
+							else
+							printf("Debe introducir 'y' o 'n'");
+							scanf(" %c", &ronda);
 						}
 					printf("GRACIAS POR JUGAR VUELVA PRONTO\n");
 					}
@@ -238,6 +250,11 @@ int main ()
 					}
 				printf("Quiere salir o jugar a otro juego?\n 'e' para salir y 'r' para cambiar de juego\n");
 				scanf(" %c",&r);
+				while(r!='e'&&r!='r')
+				{
+					printf("Debe introducir 'e' o 'r'");
+							scanf(" %c", &r);
+				}
 		     	 break;
 		   	case 3:
 		    	espacios(10);

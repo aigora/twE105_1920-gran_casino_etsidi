@@ -40,7 +40,7 @@ int n = strlen(baraja);
 	free(baraja);
 	return barajado;	
 }
-int juego(char *baraja,int apuesta, int saldo)
+float juego(char *baraja,float apuesta, float saldo)
 	{
 		int i=0,n=0, j=0, k=0;
 		char cartajugador[5];
@@ -119,14 +119,14 @@ int juego(char *baraja,int apuesta, int saldo)
 				scanf(" %c",&opcion);
 				break;
 			case 'd':
-				printf("%i,%i\n",saldo,apuesta);
+				printf("%.2f,%.2f\n",saldo,apuesta);
 				if(apuesta+apuesta>saldo)
 					{
 					printf("No tienes suficiente saldo, cambia de opcion\n");
 					scanf(" %c",&opcion);
 					}			
 					apuesta=apuesta*2;
-					printf("Esta es tu nueva apuesta: %i\nQue desea hacer a continuacion?",apuesta);
+					printf("Esta es tu nueva apuesta: %.2f\nQue desea hacer a continuacion?",apuesta);
 					scanf(" %c",&opcion);
 				break;
 			case 'f':
@@ -171,7 +171,7 @@ int juego(char *baraja,int apuesta, int saldo)
 		return saldo;
 		
 	}
-int resultado(int jugador, int crupier, int saldo, int apuesta)
+float resultado(int jugador, int crupier, float saldo, float apuesta)
 	{
 		if(jugador>21)
 					{

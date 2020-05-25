@@ -393,7 +393,7 @@ int main ()
 																return -1;
 															}
 												for(ca=-1;ca<i;ca++)
-												{
+												{	if(feof(cart)!=0) 	fseek(cart, 0, SEEK_SET);
 												
 												for(k=0;k<3;k++)
 												
@@ -404,13 +404,13 @@ int main ()
 															
 															}
 														fscanf(cart,"%i,",&persona[i].carton[k][j]);
-													
+															
 														}
 												}
 												}
 												ordenarcarton(persona[i].carton,3,5);
 												display(persona[i].carton,3,5);
-											
+												fclose(cart);
 												break;
 									   }
 								
@@ -453,7 +453,8 @@ int main ()
 						
 									
 										}
-											fclose(cart);
+											
+											printf("hola");
 										for(k=0;k<99;k++)
 										{	numbingo[k]=k+1;
 										}

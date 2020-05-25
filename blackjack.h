@@ -3,6 +3,6 @@
 #include <string.h>
 char *crearbaraja(int n);
 char *barajar(char *baraja);
-int juego(char *baraja,int apuesta, int saldo);
-int resultado(int jugador, int crupier, int saldo, int apuesta);
+float juego(char *baraja,float apuesta, float saldo);
+float resultado(int jugador, int crupier, float saldo, float apuesta);
 int cambio(char cartas[]);

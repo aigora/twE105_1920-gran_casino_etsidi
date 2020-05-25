@@ -176,10 +176,11 @@ int main ()
 		    	scanf("%s",&r);
 		    	if(r=='c')
 		    	{
-		    	int apuesta;
+		    	float apuesta;
 				char *baraja;
 				char regla,ronda;
-				int n=0,resultado;
+				int n=0;
+				float resultado;
 				i=0;
 					baraja = crearbaraja(2);
 					printf("\n %s \n", baraja);
@@ -187,7 +188,7 @@ int main ()
 					printf("\nSe va a jugar con 2 barajas \nBarajando...\nListo!");
 					for(i=0;i<tam;i++){
 					
-					printf("\n%s su saldo es de %i. \n",persona[i].nombre,persona[i].saldo);
+					printf("\n%s su saldo es de %.2f. \n",persona[i].nombre,persona[i].saldo);
 				}
 					printf("Desea una breve explicacion de las reglas?('y' para si),('n' para no)\n");
 						scanf(" %c", &regla);
@@ -213,17 +214,17 @@ int main ()
 					{
 					printf("%s te toca jugar:\n",persona[i].nombre);
 					printf("Cuanto desea apostar? La apuesta minima es 5\n");
-						scanf("%i",&apuesta);
+						scanf(" %f",&apuesta);
 						while(apuesta<5||apuesta>persona[i].saldo)
 						{
 							printf("Debe cambiar su apuesta\n");
-							scanf("%i",&apuesta);
+							scanf(" %f",&apuesta);
 						}
 					
 					persona[i].saldo= juego(baraja, apuesta, persona[i].saldo);
 					
 					
-					printf("\n%s te queda %i saldo\n",persona[i].nombre,persona[i].saldo);
+					printf("\n%s te queda %.2f saldo\n",persona[i].nombre,persona[i].saldo);
 				
 					
 					printf("%s quieres jugar otra ronda?('y' para si),('n' para no)\n",persona[i].nombre);
@@ -235,7 +236,7 @@ int main ()
 							espacios(23);
 							baraja=barajar(baraja);
 							persona[i].saldo= juego(baraja, apuesta, persona[i].saldo);
-							printf("\n%s te queda %i saldo\n",persona[i].nombre,persona[i].saldo);
+							printf("\n%s te queda %.2f saldo\n",persona[i].nombre,persona[i].saldo);
 							printf("quieres jugar otra ronda?('y' para si),('n' para no)\n");
 							scanf(" %c",&ronda);
 							}

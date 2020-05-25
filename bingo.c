@@ -337,7 +337,7 @@ for(i=0;i<10;i++)
 				
 }
 
-void saldobingo(int *saldo,int mas)
+void saldobingo(float *saldo,float mas)
 	{	*saldo+=mas;
 	}
 	

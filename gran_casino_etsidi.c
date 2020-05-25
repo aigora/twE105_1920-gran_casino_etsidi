@@ -525,7 +525,7 @@ int main ()
 										for(i=0;i<tam;i++)
 											{	if(nlinea[i]!=0)
 													{linea=12*nlinea[i];
-													printf("\t \t %f \t \t", linea);
+												
 													saldobingo(&persona[i].saldo,linea);
 													printf("%s tu saldo es: %f\n",persona[i].nombre,persona[i].saldo);
 														}	

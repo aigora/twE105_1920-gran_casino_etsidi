@@ -179,6 +179,12 @@ int main ()
 		   		printf(" La Ruleta! \n");
 		       	printf("Pulse 'c' para continuar \n Pulse 'r' para cambiar de juego\n"); // más adelante, si se pulsa c se ejecutará el juego
 		  		scanf("%s",&r);
+		  		while(r!='r'&& r!='c')
+                {
+                   printf("Debe introducir 'c' o 'r'\n");
+						scanf(" %c", &r);
+
+                }
 		   		break;
 		      
 			case 2:
@@ -187,6 +193,12 @@ int main ()
 		   		printf(" Blackjack\n");
 		    	printf("Pulse 'c' para continuar \n Pulse 'r' para cambiar de juego\n");
 		    	scanf("%s",&r);
+		    	while(r!='r'&& r!='c')
+                {
+                   printf("Debe introducir 'c' o 'r'\n");
+						scanf(" %c", &r);
+
+                }
 		    	if(r=='c')
 		    	{
 				i=0;
@@ -270,6 +282,12 @@ int main ()
 		    	printf(" la Maquina de slots\n");
 		    	printf("Pulse 'c' para continuar \n Pulse 'r' para cambiar de juego\n");
 		    	scanf("%s",&r);
+		    	while(r!='r'&& r!='c')
+                {
+                   printf("Debe introducir 'c' o 'r'\n");
+						scanf(" %c", &r);
+
+                }
 		    	if(r=='c')
 		    	{
 
@@ -349,12 +367,7 @@ int main ()
 				}
 				}
 
-				else if(r!='r'&& r!='c')
-                {
-                   printf("Debe introducir 'c' o 'r'\n");
-						scanf(" %c", &r);
-
-                }
+				
 					printf("Quiere salir o jugar a otro juego?\n 'e' para salir y 'r' para cambiar de juego\n");
 				scanf(" %c",&r);
 				while(r!='e'&&r!='r')
@@ -370,7 +383,12 @@ int main ()
 		    	printf(" el Bingo\n");
 		    	printf("Pulse 'c' para continuar \n Pulse 'r' para cambiar de juego\n");
 		   		scanf("%s",&r);
-		   			
+		   			while(r!='r'&& r!='c')
+                {
+                   printf("Debe introducir 'c' o 'r'\n");
+						scanf(" %c", &r);
+
+                }
 		   			if(r=='c')	
 				{		reglas(tam);
 						do

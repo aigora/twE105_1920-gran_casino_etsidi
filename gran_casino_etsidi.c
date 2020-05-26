@@ -227,14 +227,18 @@ int main ()
 	if(regl==2)
 	{
 		
-		do{
-		printf("Introduzca el numero de jugadores: ");
-		scanf("%i", &njugadores);
-		}
-		while(njugadores<1);
-		for(h=1; h<=njugadores; h++){
-		printf("Jugador %i Elija cuanto dinero quiere introducir: \n", h);
+		njugadores=tam;
+		for(h=0; h<njugadores; h++){
+		printf("Jugador %i, %s Elija cuanto dinero quiere apostar: \n", h+1, persona[h].nombre);
 		scanf("%f", &saldoanterior);
+			while((persona[h].saldo-saldoanterior)<0)
+				{	printf("No le queda saldo para realizar esa apuesta, introduzca mas saldo:\n");
+					scanf("%f",&saldoanterior);
+					persona[h].saldo+=saldoanterior;
+					printf("introduzca la apueta:\n");
+					scanf("%f",&saldoanterior);
+				}
+				persona[h].saldo-=saldoanterior;
 		printf("Elija su apuesta:\n");
 		printf("1) Par/Impar\n");
 		printf("2) Rojo/Negro\n");
@@ -798,29 +802,31 @@ int main ()
 				}
 				break;
 				}
+					persona[h].saldo=persona[h].saldo+saldoruleta;
+		printf("%f\t \t ",	persona[h].saldo);
 		}
+	
 		}
-		printf("Quiere volver a jugar?\n");
-		printf("1) No 2) Si: \n");
-		scanf("%i", &volver); 
-		if(volver==1){
-			printf("Desea dejar de jugar (pulse cualquier tecla) o jugar a otra cosa (1)?\n");
-			scanf("%i", &cambiojuego);
-			if(cambiojuego==1){
-				printf("Elige otro juego\n");
-			}
-			else {
-				printf("Gracias por jugar!");
-			}
-		}	
+		
+		printf("Quieres jugar otra ronda?: (si:y,no:n)\n");
+										scanf("%c",&ronda);
+											while(ronda!='y'&&ronda!='n')
+											{
+											printf("Debe introducir 'y' o 'n'");
+												scanf(" %c", &ronda);
+											}
 
-		while(volver!=1&&volver!=2){
-		printf("¿Quiere volver a jugar?\n");
-		printf("1) No 2) Si: ");
-		scanf("%i", &volver);
+		
 		}
-		}
-		while(volver==2);
+		while(ronda=='y');
+		
+			printf("Quiere salir o jugar a otro juego?\n 'e' para salir y 'r' para cambiar de juego\n");
+				scanf(" %c",&r);
+				while(r!='e'&&r!='r')
+				{
+					printf("Debe introducir 'e' o 'r'");
+							scanf(" %c", &r);
+				}
 		
 	}
 				
@@ -1228,7 +1234,7 @@ int main ()
 										scanf("%c",&ronda);
 											while(ronda!='y'&&ronda!='n')
 											{
-											printf("Debe introducir 'e' o 'r'");
+											printf("Debe introducir 'y' o 'n'");
 												scanf(" %c", &ronda);
 											}
 								}
@@ -1315,5 +1321,3 @@ return 0;
 		{	printf("\n");
 		}
 	}
-	
-

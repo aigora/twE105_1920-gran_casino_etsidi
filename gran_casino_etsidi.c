@@ -271,7 +271,7 @@ int main ()
 		    	scanf("%s",&r);
 		    	if(r=='c')
 		    	{
-				
+
 				printf("Bienvendio a la maquina de slots:\n");
 				for(i=0;i<tam;i++)
 				{
@@ -280,38 +280,37 @@ int main ()
 				printf ("2. Jugar\n");
 				scanf ("%d",  &option);
 				printf("\n");
-					
+
 				if(option==1)
 				{
 					printf("El juego consiste en conseguir el maximo de numeros iguales por linea o por diagonal.\n");
 					printf("La ganancia que se obtenga sera proporcional a lo apostado y los numeros de los rodillos\n");
-					printf("\n");	
+					printf("\n");
 				}
-							
+
 				if (option==2)
 					printf("A jugar!\n");
 				else if (option!=1 && option!=2)
 				{
 					printf("Lo sentimos, esa opcion no existe. Por favor, pulse 1 si quiere saber como se juega y 2 para jugar\n");
-					scanf("%d", &option);		
+					scanf("%d", &option);
 				}
-			
-			
+
 				printf("Su saldo es de %f euros\n", persona[i].saldo);
 				printf("Por favor, introduzca la cantidad a apostar. Esta deber ser un minimo de 5 y maximo de 10:\n");
 				scanf("%d", &apuesta);
-				
+
 				while(apuesta>persona[i].saldo || (apuesta<5 || apuesta>10))
 					{
 					printf("Debe apostar una cantidad entre 5 y 10 (valores enteros). Por favor, vuelva a introducir la cantidad: \n");
-					scanf("%d", &apuesta);	
+					scanf("%d", &apuesta);
 					}
 				persona[i].saldo-=apuesta;
 				printf("Girando los rodillos... Listo!\n");
 				printf("\n");
 				vueltas(rodillos, 3, 3);
 				total=ganado(rodillos, 3, 3);
-						
+
 				switch(apuesta)
 				{
 					case 5:
@@ -332,24 +331,37 @@ int main ()
 					case 10:
 						win=total*3;
 						break;
-					
+
 				}
 				ganancia= apuesta-win;
 				if(ganancia<=0)
 				{
+					printf("\n");
 					printf("Vaya! Parece que la suerte no esta de su parte. ");
 				}
 				else
 				{
+					printf("\n");
 					printf("Ha ganado %.2f\n", ganancia);
 					persona[i].saldo+=ganancia;
 				}
-	
 				}
 				}
-					printf("Quiere salir o jugar a otro juego?\n 'e' para salir y 'r' para cambiar de juego");
+
+				else if(r!='r'&& r!='c')
+                {
+                   printf("Debe introducir 'c' o 'r'\n");
+						scanf(" %c", &r);
+
+                }
+					printf("Quiere salir o jugar a otro juego?\n 'e' para salir y 'r' para cambiar de juego\n");
 				scanf(" %c",&r);
-		      	break;
+				while(r!='e'&&r!='r')
+				{
+					printf("Debe introducir 'e' o 'r'");
+							scanf(" %c", &r);
+				}
+				break;
 		   	 case 4:
 				
 		   		espacios(10);

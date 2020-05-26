@@ -1,9 +1,5 @@
- 376.000000	luis	lopez	478	
+ 372.429993	luis	lopez	478	
  125.000000	Juian	Gonzalez	15201256	
  387.119995	pedro	martinez castro	678969	
  250.000000	Juan	Fernandez Simon	890458	
  1179.000000	1234	1234	1234	
- 85.000000	jose	perez	4758	
-
- 789.000000	Maria	si	478
- 789.000000	Maria	asdf	478

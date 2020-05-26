@@ -18,33 +18,23 @@ int aleato(int minimo,int maximo);
 
 int main ()
 {	srand(time(NULL));
-  int opcion,num,tam,i=0,aux,salir=0,cont=0,n=0;
-  int numbingo[99],bolita,tiradab,ca;
+  int opcion,num,tam,i=0,aux,salir=0,cont=0,n=0,option;
+  int numbingo[99],bolita,tiradab,ca,lineasfich=0,apuest;
   int j,k,question,ganador=-1,nlinea[30];
-  float linea;
-  char continuar;
+  int rodillos[3][3];
+  float win=0,total,ganancia=0,apuesta,resultado,auf,linea;
+  char continuar,regla,ronda;
   char r,name[30],pass[30];
-  float auf;
+  char *baraja;	
   	usuario persona[N];
-  		usuario modif[N];
-  	int lineasfich=0;
+  	usuario modif[N];
+  	
   	FILE *usu;
   	FILE *cart;
-  	  	int option;
-		i=0;
-		int apuest;
-		float win=0;
-		float total;
-		float ganancia=0;
-		int rodillos[3][3];
 		
-		    	float apuesta;
-				char *baraja;
-				char regla,ronda;
-				
-				float resultado;
-  	
-  		
+	
+	i=0;
+		
  	printf("Bienvenido al Gran Casino ETSIDI\n");
 	printf("Comencemos con indicar el numero de participantes y sus datos:\n");
 	printf("- Numero de participantes:");

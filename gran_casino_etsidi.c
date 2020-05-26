@@ -16,9 +16,6 @@ typedef struct{
 void espacios(int n);
 int aleato(int minimo,int maximo);
 
-	
-
-
 int main ()
 {	srand(time(NULL));
   int opcion,num,tam,i=0,aux,salir=0,cont=0,n=0;

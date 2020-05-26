@@ -21,7 +21,7 @@ int aleato(int minimo,int maximo);
 
 int main ()
 {	srand(time(NULL));
-  int opcion,num,tam,i=0,aux,salir=0,cont=0,n;
+  int opcion,num,tam,i=0,aux,salir=0,cont=0,n=0;
   int numbingo[99],bolita,tiradab,ca;
   int j,k,question,ganador=-1,nlinea[30];
   float linea;
@@ -35,11 +35,17 @@ int main ()
   	FILE *cart;
   	  	int option;
 		i=0;
-		int apuesta;
+		int apuest;
 		float win=0;
 		float total;
 		float ganancia=0;
 		int rodillos[3][3];
+		
+		    	float apuesta;
+				char *baraja;
+				char regla,ronda;
+				
+				float resultado;
   	
   		
  	printf("Bienvenido al Gran Casino ETSIDI\n");
@@ -183,11 +189,6 @@ int main ()
 		    	scanf("%s",&r);
 		    	if(r=='c')
 		    	{
-		    	float apuesta;
-				char *baraja;
-				char regla,ronda;
-				int n=0;
-				float resultado;
 				i=0;
 					baraja = crearbaraja(2);
 					printf("\n %s \n", baraja);
@@ -303,7 +304,7 @@ int main ()
 				while(apuesta>persona[i].saldo || (apuesta<5 || apuesta>10))
 					{
 					printf("Debe apostar una cantidad entre 5 y 10 (valores enteros). Por favor, vuelva a introducir la cantidad: \n");
-					scanf("%d", &apuesta);
+					scanf("%d", &apuest);
 					}
 				persona[i].saldo-=apuesta;
 				printf("Girando los rodillos... Listo!\n");
@@ -311,7 +312,7 @@ int main ()
 				vueltas(rodillos, 3, 3);
 				total=ganado(rodillos, 3, 3);
 
-				switch(apuesta)
+				switch(apuest)
 				{
 					case 5:
 						win=total*0.5;
@@ -333,7 +334,7 @@ int main ()
 						break;
 
 				}
-				ganancia= apuesta-win;
+				ganancia= apuest-win;
 				if(ganancia<=0)
 				{
 					printf("\n");
@@ -372,7 +373,8 @@ int main ()
 		   			
 		   			if(r=='c')	
 				{		reglas(tam);
-		   				for(i=0;i<tam;i++)
+						do
+						{	for(i=0;i<tam;i++)
 		   				{
 						   
 		   				printf(" %s quieres diseñar el carton, generarlo aleatoriamente, o sacar uno del fichero? (1||0||2)",persona[i].nombre);
@@ -488,7 +490,6 @@ int main ()
 									
 										}
 											
-											printf("hola");
 										for(k=0;k<99;k++)
 										{	numbingo[k]=k+1;
 										}
@@ -566,11 +567,24 @@ int main ()
 														{	printf("%s tu saldo es: %f\n",persona[i].nombre,persona[i].saldo);
 														}
 											}
-								
-										
+										printf("Quieres jugar otra ronda?: (si:y,no:n)\n");
+										scanf("%c",&ronda);
+											while(ronda!='y'&&ronda!='n')
+											{
+											printf("Debe introducir 'e' o 'r'");
+												scanf(" %c", &ronda);
+											}
+								}
+								while(ronda=='y');
+		   				
 						   }	
 				printf("Quiere salir o jugar a otro juego?\n 'e' para salir y 'r' para cambiar de juego");
-				scanf(" %c",&r);		   
+				scanf(" %c",&r);		  
+					while(r!='e'&&r!='r')
+				{
+					printf("Debe introducir 'e' o 'r'");
+							scanf(" %c", &r);
+				} 
 		     	break;
 		      
 			}

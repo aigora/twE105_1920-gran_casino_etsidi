@@ -255,11 +255,11 @@ int main ()
 							persona[i].saldo= juego(baraja, apuesta, persona[i].saldo);
 							printf("\n%s te queda %.2f saldo\n",persona[i].nombre,persona[i].saldo);
 							printf("quieres jugar otra ronda?('y' para si),('n' para no)\n");
-							scanf(" %c",&ronda);
+							scanf("%c",&ronda);
 							}
 							else
 							printf("Debe introducir 'y' o 'n'");
-							scanf(" %c", &ronda);
+							scanf("%c", &ronda);
 						}
 					printf("GRACIAS POR JUGAR VUELVA PRONTO\n");
 					}

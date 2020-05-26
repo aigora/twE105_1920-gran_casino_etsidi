@@ -33,6 +33,13 @@ int main ()
   	int lineasfich=0;
   	FILE *usu;
   	FILE *cart;
+  	  	int option;
+		i=0;
+		int apuesta;
+		float win=0;
+		float total;
+		float ganancia=0;
+		int rodillos[3][3];
   	
   		
  	printf("Bienvenido al Gran Casino ETSIDI\n");
@@ -264,13 +271,6 @@ int main ()
 		    	scanf("%s",&r);
 		    	if(r=='c')
 		    	{
-		    	int option;
-				i=0;
-				int apuesta;
-				float win=0;
-				float total;
-				float ganancia=0;
-				int rodillos[3][3];
 				
 				printf("Bienvendio a la maquina de slots:\n");
 				for(i=0;i<tam;i++)

@@ -24,7 +24,7 @@ int main ()
   int numbingo[99],bolita,tiradab,ca,lineasfich=0,apuest;
   int j,k,question,ganador=-1,nlinea[30];
   int rodillos[3][3];
-  	int reglas, numero, normas, volver, cambiojuego, njugadores, h;
+  	int regl, numero, normas, volver, cambiojuego, njugadores, h;
 	float  saldoruleta, saldoanterior, saldototal;
   float win=0,total,ganancia=0,apuesta,resultado,auf,linea;
   char continuar,regla,ronda;
@@ -207,24 +207,24 @@ int main ()
                 if(r=='c'){
                 	 printf("Bienvenido al juego de la ruleta.\n");
 	printf("1) Reglas 2)Jugar\n");
-	scanf("%i", &reglas);
-	while(reglas!=1 && reglas!=2)
+	scanf("%i", &regl);
+	while(regl!=1 && regl!=2)
 	{
 	printf("1) Reglas 2)Jugar: ");
-	scanf("%i", &reglas);
+	scanf("%i", &regl);
 	}
 	do{
-	while(reglas==1)
+	while(regl==1)
 	{
 		printf("Las reglas de la ruleta:\n");
 		printf("Tienes que escoger un tipo de apuesta\n");
 		printf("Solo podras apostar a una unica caracteristica, es decir si apuetas a rojo solo podras apostar rojo\n");
-		while(regla!=2){
+		while(regl!=2){
 			printf("Pulse 2 para jugar: \n");
-		scanf("%i", &regla);
+		scanf("%i", &regl);
 		}
 	}
-	if(reglas==2)
+	if(regl==2)
 	{
 		
 		do{
@@ -823,7 +823,7 @@ int main ()
 		while(volver==2);
 		
 	}
-				}
+				
 		   		break;
 		      
 			case 2:

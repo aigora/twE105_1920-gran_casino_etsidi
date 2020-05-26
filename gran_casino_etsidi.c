@@ -85,7 +85,7 @@ int main ()
 											opcion=0;
 										}
 									if(strcmp(pass,persona[i].contrasena)==0)
-									{printf("Has iniciado sesion correctamente,tu saldo actual es:%f \n ",persona[i].saldo);
+									{printf("Has iniciado sesion correctamente,tu saldo actual es:%.2f \n ",persona[i].saldo);
 										
 									}
 									
@@ -273,7 +273,9 @@ int main ()
 				int rodillos[3][3];
 				
 				printf("Bienvendio a la maquina de slots:\n");
-				printf("Por favor, elija su opcion: \n");
+				for(i=0;i<tam;i++)
+				{
+				printf("Por favor %s, elija su opcion: \n",persona[i].nombre);
 				printf("1. Reglas del juego\n");
 				printf ("2. Jugar\n");
 				scanf ("%d",  &option);
@@ -295,16 +297,16 @@ int main ()
 				}
 			
 			
-				printf("Su saldo es de %d euros\n", persona[i].saldo);
+				printf("Su saldo es de %f euros\n", persona[i].saldo);
 				printf("Por favor, introduzca la cantidad a apostar. Esta deber ser un minimo de 5 y maximo de 10:\n");
 				scanf("%d", &apuesta);
 				
 				while(apuesta>persona[i].saldo || (apuesta<5 || apuesta>10))
 					{
-					printf("Debe apostar una cantidad entre 5 y 10. Por favor, vuelva a introducir la cantidad: \n");
+					printf("Debe apostar una cantidad entre 5 y 10 (valores enteros). Por favor, vuelva a introducir la cantidad: \n");
 					scanf("%d", &apuesta);	
 					}
-				
+				persona[i].saldo-=apuesta;
 				printf("Girando los rodillos... Listo!\n");
 				printf("\n");
 				vueltas(rodillos, 3, 3);
@@ -335,13 +337,15 @@ int main ()
 				ganancia= apuesta-win;
 				if(ganancia<=0)
 				{
-					printf("Vaya! Parece que la suerte no está de su parte. ");
+					printf("Vaya! Parece que la suerte no esta de su parte. ");
 				}
 				else
 				{
 					printf("Ha ganado %.2f\n", ganancia);
+					persona[i].saldo+=ganancia;
 				}
 	
+				}
 				}
 					printf("Quiere salir o jugar a otro juego?\n 'e' para salir y 'r' para cambiar de juego");
 				scanf(" %c",&r);
@@ -400,7 +404,7 @@ int main ()
 		   										printf("Se te van a descortar 5 monedas de tu saldo\n");
 		   								while((persona[i].saldo-5)<0)
 		   									{	printf("No tienes dinero suficiente, mete mas dinero en tu saldo si queires continuar:\n");
-		   										scanf("%i",&persona[i].saldo);
+		   										scanf("%f",&persona[i].saldo);
 											   }						
 										persona[i].saldo-=5	;			   
 		   								

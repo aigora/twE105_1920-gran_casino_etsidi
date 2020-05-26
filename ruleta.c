@@ -1,15 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
-
-void reglasRuleta()
-{
-		printf("Las reglas de la ruleta:\n");
-		printf("1): Tienes que escoger un tipo de apuesta\n");
-		printf("2)Entre las apuestas que puedes elegir se encuentran:");
-		printf("par o impar, rojo o negro, elegir una fila, una columna,\n");
-		printf("Tambien se puede escoger entre 3 numeros, 2 o 1\n");
-		printf("Solo podras apostar a una unica caracteristica, es decir si apuetas a rojo solo podras apostar rojo\n");
-		printf("Pulse 2 para jugar");
-}
+#include "ruleta.h"
 
 int compruebaPar(int numero)
 {
@@ -49,24 +42,23 @@ int compruebaMitad(int numero)
 
 int compruebaColumna(int numero)
 {
-	int i;
-	int c1;
-	int c2;
-	int c3;
-	for(i=0; i<13; i++){
 	
-    if(c1=1+3*i){
+    if(numero==1||numero==4||numero==7||numero==10||
+	   numero==13||numero==16||numero==19||numero==22||
+	   numero==25||numero==28||numero==31||numero==34){
         return 1;
     }
-    else if (c2=2+3*i){
+    else if (numero==2||numero==5||numero==8||numero==11||
+	   numero==14||numero==17||numero==20||numero==23||
+	   numero==26||numero==29||numero==32||numero==35){
     return 0;
     }
-    else if (c3=3+3*i){
+    else {
     	return 2;
 	}
 	}
    
-}
+
 
 int compruebaDocena(int numero)
 {
@@ -154,6 +146,4 @@ int aleator(int minimo,int maximo)
 	return numero;
 }
        
-
-
 

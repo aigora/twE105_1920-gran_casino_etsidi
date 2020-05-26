@@ -119,7 +119,6 @@ float juego(char *baraja,float apuesta, float saldo)
 				scanf(" %c",&opcion);
 				break;
 			case 'd':
-				printf("%.2f,%.2f\n",saldo,apuesta);
 				if(apuesta+apuesta>saldo)
 					{
 					printf("No tienes suficiente saldo, cambia de opcion\n");

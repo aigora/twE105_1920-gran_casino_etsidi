@@ -299,14 +299,14 @@ int main ()
 
 				printf("Su saldo es de %f euros\n", persona[i].saldo);
 				printf("Por favor, introduzca la cantidad a apostar. Esta deber ser un minimo de 5 y maximo de 10:\n");
-				scanf("%d", &apuesta);
+				scanf("%d", &apuest);
 
-				while(apuesta>persona[i].saldo || (apuesta<5 || apuesta>10))
+				while(apuest>persona[i].saldo || (apuest<5 || apuest>10))
 					{
 					printf("Debe apostar una cantidad entre 5 y 10 (valores enteros). Por favor, vuelva a introducir la cantidad: \n");
 					scanf("%d", &apuest);
 					}
-				persona[i].saldo-=apuesta;
+				persona[i].saldo-=apuest;
 				printf("Girando los rodillos... Listo!\n");
 				printf("\n");
 				vueltas(rodillos, 3, 3);

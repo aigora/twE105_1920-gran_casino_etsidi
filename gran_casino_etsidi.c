@@ -803,7 +803,7 @@ int main ()
 				break;
 				}
 					persona[h].saldo=persona[h].saldo+saldoruleta;
-		printf("%f\t \t ",	persona[h].saldo);
+	
 		}
 	
 		}
@@ -937,6 +937,9 @@ int main ()
 		    	{
 
 				printf("Bienvendio a la maquina de slots:\n");
+				do
+				{
+					
 				for(i=0;i<tam;i++)
 				{
 				printf("Por favor %s, elija su opcion: \n",persona[i].nombre);
@@ -1010,6 +1013,15 @@ int main ()
 					persona[i].saldo+=ganancia;
 				}
 				}
+					printf("Quieres jugar otra ronda?: (si:y,no:n)\n");
+										scanf("%c",&ronda);
+											while(ronda!='y'&&ronda!='n')
+											{
+											printf("Debe introducir 'y' o 'n'");
+												scanf(" %c", &ronda);
+											}
+				}
+				while (ronda=='y');
 				}
 
 				

@@ -963,7 +963,7 @@ int main ()
 					scanf("%d", &option);
 				}
 
-				printf("Su saldo es de %f euros\n", persona[i].saldo);
+				printf("Su saldo es de %.2f euros\n", persona[i].saldo);
 				printf("Por favor, introduzca la cantidad a apostar. Esta deber ser un minimo de 5 y maximo de 10:\n");
 				scanf("%d", &apuest);
 
@@ -1148,7 +1148,7 @@ int main ()
 												for(k=0;k<3;k++)
 												{	for(j=0;j<5;j++)
 												
-														{	if(j==4&&i==2)
+														{	if(j==4&&k==2)
 															{	fprintf(usu,"%i",persona[i].carton[k][j]);
 															}
 														fprintf(usu,"%i,",persona[i].carton[k][j]);
@@ -1170,8 +1170,23 @@ int main ()
 										}
 										bolita=aleatorio(1,99);
 										cont=0;
+										ganador=-1;
 										while(ganador==-1)
 										{cont++;
+												tiradab=0;
+													while(tiradab==0)
+													{
+													
+														if(numbingo[bolita-1]==0)
+																{	bolita=aleato(1,99);
+																	tiradab=0;
+																}
+																else
+																{	numbingo[bolita-1]=0;
+																tiradab=1;
+																}
+														
+													}
 												if(cont==100)
 													{	ganador=aleatorio(0,tam-1);
 													}
@@ -1181,7 +1196,6 @@ int main ()
 													
 													switch(bingolinea(persona[i].carton,3,5,bolita))
 														{	
-														
 															case 1:
 																printf("Bingo para %s!!\n",persona[i].nombre);
 																saldobingo(&persona[i].saldo,80);
@@ -1189,9 +1203,9 @@ int main ()
 																display(persona[i].carton,3,5);
 																ganador=i;
 																break;
-														case 2:
-															printf("Linea para %s!!\n",persona[i].nombre);
-																	printf("%s:\n",persona[i].nombre);
+															case 2:
+																printf("Linea para %s!!\n",persona[i].nombre);
+																printf("%s:\n",persona[i].nombre);
 																display(persona[i].carton,3,5);
 																nlinea[i]++;
 																if(nlinea[i]>3)
@@ -1206,35 +1220,27 @@ int main ()
 													
 													
 													}
-													tiradab=0;
-													while(tiradab==0)
-													{
-													
-														if(numbingo[bolita-1]==0)
-																{	bolita=aleato(1,99);
-																	tiradab=0;
-																}
-																else
-																{	numbingo[bolita-1]=0;
-																tiradab=1;
-																}
-														
-													}
-														printf("pulse enter para sacar otra bola:\n");
-																scanf("%c",&continuar);
 																if(ganador==-1)
-																	{	printf("siguiente numero\n");
+																	{
+																	printf("pulse cualquier letra mas enter para sacar otra bola:\n");
+																scanf(" %c",&continuar);
+																	printf("siguiente numero\n");
 																	}
-																	else printf("Pulse enter para salir del bingo!\n");
+																	else 
+																	{printf("Pulse letra mas enter  para salir del bingo!\n");
+																		scanf(" %c",&continuar);
+																	}
 															
 												
 													}
 										printf("Felicidades %s, has Ganado el bingo!\n",persona[ganador].nombre);
-										saldobingo(&persona[ganador].saldo,80);
+										
+										auf=80;
+										saldobingo(&persona[ganador].saldo,auf);
 										for(i=0;i<tam;i++)
 											{	if(nlinea[i]!=0)
 													{linea=12*nlinea[i];
-												
+														printf("\n \n %f \n \n",linea);
 													saldobingo(&persona[i].saldo,linea);
 													printf("%s tu saldo es: %f\n",persona[i].nombre,persona[i].saldo);
 														}	

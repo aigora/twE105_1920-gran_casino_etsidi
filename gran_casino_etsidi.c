@@ -1151,7 +1151,7 @@ int main ()
 														{	if(j==4&&k==2)
 															{	fprintf(usu,"%i",persona[i].carton[k][j]);
 															}
-														fprintf(usu,"%i,",persona[i].carton[k][j]);
+															else fprintf(usu,"%i,",persona[i].carton[k][j]);
 												
 											
 														}
@@ -1234,13 +1234,12 @@ int main ()
 												
 													}
 										printf("Felicidades %s, has Ganado el bingo!\n",persona[ganador].nombre);
-										
 										auf=80;
 										saldobingo(&persona[ganador].saldo,auf);
 										for(i=0;i<tam;i++)
 											{	if(nlinea[i]!=0)
 													{linea=12*nlinea[i];
-														printf("\n \n %f \n \n",linea);
+														
 													saldobingo(&persona[i].saldo,linea);
 													printf("%s tu saldo es: %f\n",persona[i].nombre,persona[i].saldo);
 														}	

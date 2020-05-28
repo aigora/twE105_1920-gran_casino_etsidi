@@ -885,7 +885,7 @@ int main ()
 							printf("Debe cambiar su apuesta\n");
 							scanf(" %f",&apuesta);
 						}
-					
+					baraja=barajar(baraja);
 					persona[i].saldo= juego(baraja, apuesta, persona[i].saldo);
 					
 					

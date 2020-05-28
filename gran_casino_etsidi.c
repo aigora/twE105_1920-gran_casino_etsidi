@@ -12,7 +12,7 @@ typedef struct{
 		char nombre[30];
 		char apellido[30];
 		char contrasena[15];
-		float saldo; //int, long int
+		float saldo; 
 		int carton[3][5];
 }usuario;
 void espacios(int n);
@@ -71,7 +71,7 @@ int main ()
 	printf("Comencemos con indicar el numero de participantes y sus datos:\n");
 	printf("- Numero de participantes:");
 	scanf(" %i",&tam);
-	//ignorar: persona = malloc(sizeof(usuario) * tam);
+
 				
 	for(i=0;i<tam;i++)
 	{	salir=0;

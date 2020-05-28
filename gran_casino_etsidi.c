@@ -1083,8 +1083,8 @@ int main ()
   												scanf("%i",&question);
   												while(question==1)
   											{	printf("vamos a solucionarlo\n");
-  												cartonaleatorio(persona[0].carton,3,5);
-  												display(persona[0].carton,3,5);
+  												cartonaleatorio(persona[i].carton,3,5);
+  												display(persona[i].carton,3,5);
   													printf("notas algun error, tu cartón es el mismo que el de otro jugador?(Si:1;No=0)\n");
   													scanf("%i",&question);
   												}

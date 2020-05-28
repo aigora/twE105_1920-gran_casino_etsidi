@@ -15,4 +15,4 @@ Alvaro Allende Cueva -@alvallcue
 ## Objetivos del trabajo
 
 Creación de un programa que pueda llegar a simular un programa real de apuestas online 
-Programación de diferentes juegos lucrativos como una Ruleta, un Bingo, una Maquina Tragaperras ...
+Programación de diferentes juegos lucrativos: una Ruleta, un Bingo, una Maquina Tragaperras y el Blackjack

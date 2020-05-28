@@ -24,7 +24,7 @@ int main ()
   int numbingo[99],bolita,tiradab,ca,lineasfich=0,apuest;
   int j,k,question,ganador=-1,nlinea[30];
   int rodillos[3][3];
-  	int reglas, numero, normas, volver, cambiojuego, njugadores, h;
+  	int regl, numero, normas, volver, cambiojuego, njugadores, h;
 	float  saldoruleta, saldoanterior, saldototal;
   float win=0,total,ganancia=0,apuesta,resultado,auf,linea;
   char continuar,regla,ronda;
@@ -207,34 +207,38 @@ int main ()
                 if(r=='c'){
                 	 printf("Bienvenido al juego de la ruleta.\n");
 	printf("1) Reglas 2)Jugar\n");
-	scanf("%i", &reglas);
-	while(reglas!=1 && reglas!=2)
+	scanf("%i", &regl);
+	while(regl!=1 && regl!=2)
 	{
 	printf("1) Reglas 2)Jugar: ");
-	scanf("%i", &reglas);
+	scanf("%i", &regl);
 	}
 	do{
-	while(reglas==1)
+	while(regl==1)
 	{
 		printf("Las reglas de la ruleta:\n");
 		printf("Tienes que escoger un tipo de apuesta\n");
 		printf("Solo podras apostar a una unica caracteristica, es decir si apuetas a rojo solo podras apostar rojo\n");
-		while(regla!=2){
+		while(regl!=2){
 			printf("Pulse 2 para jugar: \n");
-		scanf("%i", &regla);
+		scanf("%i", &regl);
 		}
 	}
-	if(reglas==2)
+	if(regl==2)
 	{
 		
-		do{
-		printf("Introduzca el numero de jugadores: ");
-		scanf("%i", &njugadores);
-		}
-		while(njugadores<1);
-		for(h=1; h<=njugadores; h++){
-		printf("Jugador %i Elija cuanto dinero quiere introducir: \n", h);
+		njugadores=tam;
+		for(h=0; h<njugadores; h++){
+		printf("Jugador %i, %s Elija cuanto dinero quiere apostar: \n", h+1, persona[h].nombre);
 		scanf("%f", &saldoanterior);
+			while((persona[h].saldo-saldoanterior)<0)
+				{	printf("No le queda saldo para realizar esa apuesta, introduzca mas saldo:\n");
+					scanf("%f",&saldoanterior);
+					persona[h].saldo+=saldoanterior;
+					printf("introduzca la apueta:\n");
+					scanf("%f",&saldoanterior);
+				}
+				persona[h].saldo-=saldoanterior;
 		printf("Elija su apuesta:\n");
 		printf("1) Par/Impar\n");
 		printf("2) Rojo/Negro\n");
@@ -798,32 +802,34 @@ int main ()
 				}
 				break;
 				}
+					persona[h].saldo=persona[h].saldo+saldoruleta;
+	
 		}
+	
 		}
-		printf("Quiere volver a jugar?\n");
-		printf("1) No 2) Si: \n");
-		scanf("%i", &volver); 
-		if(volver==1){
-			printf("Desea dejar de jugar (pulse cualquier tecla) o jugar a otra cosa (1)?\n");
-			scanf("%i", &cambiojuego);
-			if(cambiojuego==1){
-				printf("Elige otro juego\n");
-			}
-			else {
-				printf("Gracias por jugar!");
-			}
-		}	
+		
+		printf("Quieres jugar otra ronda?: (si:y,no:n)\n");
+										scanf("%c",&ronda);
+											while(ronda!='y'&&ronda!='n')
+											{
+											printf("Debe introducir 'y' o 'n'");
+												scanf(" %c", &ronda);
+											}
 
-		while(volver!=1&&volver!=2){
-		printf("¿Quiere volver a jugar?\n");
-		printf("1) No 2) Si: ");
-		scanf("%i", &volver);
+		
 		}
-		}
-		while(volver==2);
+		while(ronda=='y');
+		
+			printf("Quiere salir o jugar a otro juego?\n 'e' para salir y 'r' para cambiar de juego\n");
+				scanf(" %c",&r);
+				while(r!='e'&&r!='r')
+				{
+					printf("Debe introducir 'e' o 'r'");
+							scanf(" %c", &r);
+				}
 		
 	}
-				}
+				
 		   		break;
 		      
 			case 2:
@@ -931,6 +937,9 @@ int main ()
 		    	{
 
 				printf("Bienvendio a la maquina de slots:\n");
+				do
+				{
+					
 				for(i=0;i<tam;i++)
 				{
 				printf("Por favor %s, elija su opcion: \n",persona[i].nombre);
@@ -954,7 +963,7 @@ int main ()
 					scanf("%d", &option);
 				}
 
-				printf("Su saldo es de %f euros\n", persona[i].saldo);
+				printf("Su saldo es de %.2f euros\n", persona[i].saldo);
 				printf("Por favor, introduzca la cantidad a apostar. Esta deber ser un minimo de 5 y maximo de 10:\n");
 				scanf("%d", &apuest);
 
@@ -1004,6 +1013,15 @@ int main ()
 					persona[i].saldo+=ganancia;
 				}
 				}
+					printf("Quieres jugar otra ronda?: (si:y,no:n)\n");
+										scanf("%c",&ronda);
+											while(ronda!='y'&&ronda!='n')
+											{
+											printf("Debe introducir 'y' o 'n'");
+												scanf(" %c", &ronda);
+											}
+				}
+				while (ronda=='y');
 				}
 
 				
@@ -1130,10 +1148,10 @@ int main ()
 												for(k=0;k<3;k++)
 												{	for(j=0;j<5;j++)
 												
-														{	if(j==4&&i==2)
+														{	if(j==4&&k==2)
 															{	fprintf(usu,"%i",persona[i].carton[k][j]);
 															}
-														fprintf(usu,"%i,",persona[i].carton[k][j]);
+															else fprintf(usu,"%i,",persona[i].carton[k][j]);
 												
 											
 														}
@@ -1152,8 +1170,23 @@ int main ()
 										}
 										bolita=aleatorio(1,99);
 										cont=0;
+										ganador=-1;
 										while(ganador==-1)
 										{cont++;
+												tiradab=0;
+													while(tiradab==0)
+													{
+													
+														if(numbingo[bolita-1]==0)
+																{	bolita=aleato(1,99);
+																	tiradab=0;
+																}
+																else
+																{	numbingo[bolita-1]=0;
+																tiradab=1;
+																}
+														
+													}
 												if(cont==100)
 													{	ganador=aleatorio(0,tam-1);
 													}
@@ -1163,7 +1196,6 @@ int main ()
 													
 													switch(bingolinea(persona[i].carton,3,5,bolita))
 														{	
-														
 															case 1:
 																printf("Bingo para %s!!\n",persona[i].nombre);
 																saldobingo(&persona[i].saldo,80);
@@ -1171,9 +1203,9 @@ int main ()
 																display(persona[i].carton,3,5);
 																ganador=i;
 																break;
-														case 2:
-															printf("Linea para %s!!\n",persona[i].nombre);
-																	printf("%s:\n",persona[i].nombre);
+															case 2:
+																printf("Linea para %s!!\n",persona[i].nombre);
+																printf("%s:\n",persona[i].nombre);
 																display(persona[i].carton,3,5);
 																nlinea[i]++;
 																if(nlinea[i]>3)
@@ -1188,35 +1220,26 @@ int main ()
 													
 													
 													}
-													tiradab=0;
-													while(tiradab==0)
-													{
-													
-														if(numbingo[bolita-1]==0)
-																{	bolita=aleato(1,99);
-																	tiradab=0;
-																}
-																else
-																{	numbingo[bolita-1]=0;
-																tiradab=1;
-																}
-														
-													}
-														printf("pulse enter para sacar otra bola:\n");
-																scanf("%c",&continuar);
 																if(ganador==-1)
-																	{	printf("siguiente numero\n");
+																	{
+																	printf("pulse cualquier letra mas enter para sacar otra bola:\n");
+																scanf(" %c",&continuar);
+																	printf("siguiente numero\n");
 																	}
-																	else printf("Pulse enter para salir del bingo!\n");
+																	else 
+																	{printf("Pulse letra mas enter  para salir del bingo!\n");
+																		scanf(" %c",&continuar);
+																	}
 															
 												
 													}
 										printf("Felicidades %s, has Ganado el bingo!\n",persona[ganador].nombre);
-										saldobingo(&persona[ganador].saldo,80);
+										auf=80;
+										saldobingo(&persona[ganador].saldo,auf);
 										for(i=0;i<tam;i++)
 											{	if(nlinea[i]!=0)
 													{linea=12*nlinea[i];
-												
+														
 													saldobingo(&persona[i].saldo,linea);
 													printf("%s tu saldo es: %f\n",persona[i].nombre,persona[i].saldo);
 														}	
@@ -1228,7 +1251,7 @@ int main ()
 										scanf("%c",&ronda);
 											while(ronda!='y'&&ronda!='n')
 											{
-											printf("Debe introducir 'e' o 'r'");
+											printf("Debe introducir 'y' o 'n'");
 												scanf(" %c", &ronda);
 											}
 								}
@@ -1315,5 +1338,3 @@ return 0;
 		{	printf("\n");
 		}
 	}
-	
-

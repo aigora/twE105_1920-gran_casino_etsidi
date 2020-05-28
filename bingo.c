@@ -3,7 +3,10 @@
 #include <time.h>
 
 void reglas(int n)
-	{	printf("Reglas del juego \n Primero, cada uno de los %i jugadores debera de decidir siquiere diseñar su propio carton o elegir uno predeterminado.\n Precios :		Predeterminado:5\t Personalizado: 7 \n \n Van a ir saliendo numeros aleatorios 	entre el 1 y el 99 y vas a tener que ir marcando si esta en tu carton.\n Si tienes una linea ganaras 12 monedas y si consigues hacer el bingo(carton completo) ganaras 80 monedas.\n\n",n);
+	{	if(n==1)
+		{	printf("\n SE RECOMIENDA SER MAS DE UN JUGADOR, se ejecutara de manera normal aunque solo sea un jugador\n\n");
+		}
+		printf("Reglas del juego \n Primero, cada uno de los %i jugadores debera de decidir siquiere diseñar su propio carton o elegir uno predeterminado.\n Precios :		Predeterminado:5\t Personalizado: 7 \n \n Van a ir saliendo numeros aleatorios 	entre el 1 y el 99 y vas a tener que ir marcando si esta en tu carton.\n Si tienes una linea ganaras 12 monedas y si consigues hacer el bingo(carton completo) ganaras 80 monedas.\n\n",n);
 	
 	}
 	int aleat(int minimo,int maximo)
@@ -142,7 +145,7 @@ void disenocarton(int matriz[][5],int n, int c)
 
 void display(int matriz[][5],int n, int c)
 	{	int i,j;
-			printf("________________________________________\n");
+			printf("__________________________________________\n");
 		for(i=0;i<3;i++)
 			
 	{		printf("| ");
@@ -151,7 +154,7 @@ void display(int matriz[][5],int n, int c)
 			}
 			printf(" |\n");
 	}
-		printf("_______________________________________\n\n");
+		printf("|________________________________________|\n\n");
 }
 
 

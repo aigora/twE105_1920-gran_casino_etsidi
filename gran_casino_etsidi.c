@@ -7,7 +7,7 @@
 #include "Maquina_tragaperras.h"
 #include "ruleta.h"
 #define N 99
-
+//si en el proyecto no se encuentran las librerias ruleta.h y ruleta.c han de añadirse manualmente
 typedef struct{
 		char nombre[30];
 		char apellido[30];

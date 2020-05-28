@@ -1103,8 +1103,10 @@ int main ()
 																printf("Error al abrir el fichero.\n");
 																return -1;
 															}
-												for(ca=-1;ca<i;ca++)
-												{	if(feof(cart)!=0) 	fseek(cart, 0, SEEK_SET);
+												question=1;
+													while(question==1)
+													{	for(ca=-1;ca<i;ca++)
+													if(feof(cart)!=0) 	fseek(cart, 0, SEEK_SET);
 												
 												for(k=0;k<3;k++)
 												
@@ -1118,7 +1120,15 @@ int main ()
 															
 														}
 												}
-												}
+												
+												
+												ordenarcarton(persona[i].carton,3,5);
+													display(persona[i].carton,3,5);
+													
+													printf(" tu cartón es el mismo que el de otro jugador?(Si:1;No=0)\n");
+  													scanf("%i",&question);
+													}
+												
 												ordenarcarton(persona[i].carton,3,5);
 												display(persona[i].carton,3,5);
 												fclose(cart);
